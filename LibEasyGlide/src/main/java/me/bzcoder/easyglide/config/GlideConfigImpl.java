@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
+import me.bzcoder.easyglide.progress.OnProgressListener;
+
 /**
  * ================================================
  * Created by JessYan on 30/03/2018 17:16
@@ -45,6 +47,7 @@ public class GlideConfigImpl extends ImageConfig {
     private int imageRadius;//图片每个圆角的大小
     private int blurValue;//高斯模糊值, 值越大模糊效果越大
     private boolean isCrossFade;//是否使用淡入淡出过渡动画
+    private OnProgressListener onProgressListener;//监听加载进度
 
     private GlideConfigImpl(Builder builder) {
         this.url = builder.url;
@@ -67,6 +70,7 @@ public class GlideConfigImpl extends ImageConfig {
         this.isCrossFade = builder.isCrossFade;
         this.imageRadius = builder.imageRadius;
         this.blurValue = builder.blurValue;
+        this.onProgressListener = builder.onProgressListener;
     }
 
     public int getCacheStrategy() {
@@ -93,42 +97,62 @@ public class GlideConfigImpl extends ImageConfig {
         return fallback;
     }
 
-    public Drawable getPlaceHolderDrawble() {
+    public Drawable getPlaceHolderDrawable() {
         return placeholderDrawable;
     }
-    public int getResizeX(){
+
+    public int getResizeX() {
         return resizeX;
     }
-    public int getResizeY(){
+
+    public int getResizeY() {
         return resizeY;
     }
-    public boolean isCropCenter(){
+
+    public boolean isCropCenter() {
         return isCropCenter;
     }
-    public boolean isCropCircle(){
+
+    public boolean isCropCircle() {
         return isCropCircle;
     }
-    public DecodeFormat decodeFormate(){
-        return  formate;
+
+    public DecodeFormat decodeFormate() {
+        return formate;
     }
-    public boolean isFitCenter(){
+
+    public boolean isFitCenter() {
         return isFitCenter;
     }
+
     public boolean isCrossFade() {
         return isCrossFade;
     }
+
     public int getBlurValue() {
         return blurValue;
     }
+
     public boolean isBlurImage() {
         return blurValue > 0;
     }
+
     public int getImageRadius() {
         return imageRadius;
     }
+
     public boolean isImageRadius() {
         return imageRadius > 0;
     }
+
+    public OnProgressListener getOnProgressListener() {
+        return onProgressListener;
+    }
+
+    public void setOnProgressListener(OnProgressListener onProgressListener) {
+        this.onProgressListener = onProgressListener;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -152,9 +176,10 @@ public class GlideConfigImpl extends ImageConfig {
         private boolean isCropCenter;//裁剪居中
         private boolean isCropCircle;
         private boolean isCrossFade;//是否使用淡入淡出过渡动画
-        public DecodeFormat formate;
-        public boolean isFitCenter;
+        private DecodeFormat formate;
+        private boolean isFitCenter;
         private int resizeY;
+        private OnProgressListener onProgressListener;
 
         private Builder() {
         }
@@ -228,30 +253,39 @@ public class GlideConfigImpl extends ImageConfig {
             this.placeholderDrawable = placeholderDrawble;
             return this;
         }
-        public Builder resize(int resizeX,int resizeY){
+
+        public Builder resize(int resizeX, int resizeY) {
             this.resizeX = resizeX;
             this.resizeY = resizeY;
             return this;
         }
 
-        public Builder isCropCenter(boolean isCropCenter){
+        public Builder isCropCenter(boolean isCropCenter) {
             this.isCropCenter = isCropCenter;
             return this;
         }
 
-        public Builder isCropCircle(boolean isCropCircle){
+        public Builder isCropCircle(boolean isCropCircle) {
             this.isCropCircle = isCropCircle;
             return this;
         }
-        public Builder setDecodeFormate(DecodeFormat decodeFormate){
+
+        public Builder setDecodeFormate(DecodeFormat decodeFormate) {
             formate = decodeFormate;
             return this;
         }
 
-        public Builder isFitCenter(boolean isFitCenter){
+        public Builder isFitCenter(boolean isFitCenter) {
             this.isFitCenter = isFitCenter;
             return this;
         }
+
+        public Builder ProgressListner(OnProgressListener onProgressListener) {
+            this.onProgressListener = onProgressListener;
+            return this;
+        }
+
+
         public GlideConfigImpl build() {
             return new GlideConfigImpl(this);
         }

@@ -15,6 +15,7 @@ import okio.Okio;
 import okio.Source;
 
 /**
+ * 计算进度
  * @author by sunfusheng on 2017/6/14.
  */
 public class ProgressResponseBody extends ResponseBody {

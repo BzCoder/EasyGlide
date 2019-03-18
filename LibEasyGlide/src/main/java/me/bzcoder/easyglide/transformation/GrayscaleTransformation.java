@@ -16,7 +16,6 @@ package me.bzcoder.easyglide.transformation;
  * limitations under the License.
  */
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;

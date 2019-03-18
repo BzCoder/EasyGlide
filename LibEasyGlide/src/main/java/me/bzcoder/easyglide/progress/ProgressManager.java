@@ -33,8 +33,8 @@ public class ProgressManager {
                                 .body(new ProgressResponseBody(request.url().toString(), LISTENER, response.body()))
                                 .build();
                     })
-                    .socketFactory(SSLSocketClient.getSSLSocketFactory())
-                    .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+//                    .socketFactory(SSLSocketClient.getSSLSocketFactory())
+//                    .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
                     .build();
         }
         return okHttpClient;
