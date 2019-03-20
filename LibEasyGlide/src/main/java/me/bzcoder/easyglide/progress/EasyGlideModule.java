@@ -23,7 +23,7 @@ import me.bzcoder.easyglide.http.OkHttpUrlLoader;
  * @author : BaoZhou
  * @date : 2019/3/17 2:52
  */
-@GlideModule
+@GlideModule(glideName = "EasyGlideApp")
 public class EasyGlideModule extends AppGlideModule {
 
     /**

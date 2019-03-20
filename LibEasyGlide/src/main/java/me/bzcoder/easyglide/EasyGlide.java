@@ -9,12 +9,15 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.util.Preconditions;
 
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import me.bzcoder.easyglide.config.GlideConfigImpl;
-import me.bzcoder.easyglide.progress.GlideApp;
+import me.bzcoder.easyglide.progress.EasyGlideApp;
 import me.bzcoder.easyglide.progress.GlideImageViewTarget;
 import me.bzcoder.easyglide.progress.GlideRequest;
 import me.bzcoder.easyglide.progress.GlideRequests;
@@ -120,7 +123,7 @@ public class EasyGlide {
 
 
     public static void loadRoundCornerImage(Context context, String url, ImageView imageView) {
-        loadRoundCornerImage(context, url, 30, 0, imageView, placeHolderImageView);
+        loadRoundCornerImage(context, url, 40, 0, imageView, placeHolderImageView);
     }
 
     public static void loadRoundCornerImage(Context context, String url, int radius, int margin, ImageView imageView) {
@@ -142,6 +145,30 @@ public class EasyGlide {
 
 
     /**
+     * 提供了一下如下变形类，支持叠加使用
+     * BlurTransformation
+     * GrayscaleTransformation
+     * RoundedCornersTransformation
+     * CircleCrop
+     * CenterCrop
+     */
+    public static void loadImageWithTransformation(Context context, String url, ImageView imageView,BitmapTransformation... bitmapTransformations) {
+        loadImageWithTransformation(context,url,imageView,R.color.transparent, bitmapTransformations);
+    }
+
+    public static void loadImageWithTransformation(Context context, String url, ImageView imageView, @DrawableRes int placeHolder,BitmapTransformation... bitmapTransformations) {
+        loadImage(context,
+                GlideConfigImpl
+                        .builder()
+                        .url(url)
+                        .transformation(bitmapTransformations)
+                        .isCrossFade(true)
+                        .errorPic(placeHolder)
+                        .placeholder(placeHolder)
+                        .imageView(imageView)
+                        .build());
+    }
+    /**
      * 预加载
      *
      * @param context
@@ -159,7 +186,7 @@ public class EasyGlide {
         }
         Preconditions.checkNotNull(config.getImageView(), "ImageView is required");
         GlideRequests requests;
-        requests = GlideApp.with(context);
+        requests = EasyGlideApp.with(context);
         GlideRequest<Drawable> glideRequest;
         glideRequest = requests.load(config.getUrl());
         //缓存策略
@@ -239,7 +266,33 @@ public class EasyGlide {
             ProgressManager.addListener(config.getUrl(), config.getOnProgressListener());
         }
 
-
         glideRequest.into(new GlideImageViewTarget(config.getImageView(), config.getUrl()));
     }
+
+
+    /**
+     * 清除本地缓存
+     */
+    public static  void clearDiskCache(final Context context){
+        Observable.just(0)
+                .observeOn(Schedulers.io())
+                .subscribe(integer -> Glide.get(context).clearDiskCache());
+    }
+
+    /**
+     * 清除内存缓存
+     */
+    public static  void clearMemory(final Context context){
+        Observable.just(0)
+                .observeOn(Schedulers.io())
+                .subscribe(integer -> Glide.get(context).clearDiskCache());
+    }
+
+    /**
+     */
+    public static  void clearImage(final Context context,ImageView imageView){
+        EasyGlideApp.get(context).getRequestManagerRetriever().get(context).clear(imageView);
+    }
+
+
 }

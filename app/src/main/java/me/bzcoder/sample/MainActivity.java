@@ -6,9 +6,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+
 import me.bzcoder.easyglide.EasyGlide;
 import me.bzcoder.easyglide.progress.CircleProgressView;
 import me.bzcoder.easyglide.progress.OnProgressListener;
+import me.bzcoder.easyglide.transformation.BlurTransformation;
+import me.bzcoder.easyglide.transformation.GrayscaleTransformation;
+import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
 import me.bzcoder.easyglide.view.SelectImageView;
 import me.bzcoder.nidegridphotoview.R;
 
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv9;
     private ImageView iv10;
     private CircleProgressView circleProgressView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         iv7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("123");
             }
         });
         iv8 = (ImageView) findViewById(R.id.iv_8);
@@ -68,19 +74,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        EasyGlide.loadImage(this,url1,iv1);
+        EasyGlide.loadImage(this, url1, iv1);
 
-        EasyGlide.loadImage(this,url3,iv2);
+        EasyGlide.loadImage(this, url3, iv2);
 
-        EasyGlide.loadBlurImage(this,url1,iv3);
+        EasyGlide.loadBlurImage(this, url1, iv3);
 
-        EasyGlide.loadCircleImage(this,url1,iv4);
+        EasyGlide.loadCircleImage(this, url1, iv4);
 
-        EasyGlide.loadRoundCornerImage(this,url1,iv5);
+        EasyGlide.loadRoundCornerImage(this, url1, iv5);
 
-        EasyGlide.loadGrayImage(this,url1,iv6);
+        EasyGlide.loadGrayImage(this, url1, iv6);
 
-        EasyGlide.loadImage(this,url2,iv7);
+        EasyGlide.loadImage(this, url2, iv7);
+
+        EasyGlide.loadImageWithTransformation(this, url2, iv8, new GrayscaleTransformation(),new RoundedCornersTransformation(50, 0));
+
+        EasyGlide.loadImageWithTransformation(this, url2, iv9, new BlurTransformation(this, 20)
+                , new GrayscaleTransformation(), new CircleCrop());
     }
 
 

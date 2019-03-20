@@ -33,7 +33,7 @@ import me.bzcoder.easyglide.progress.OnProgressListener;
 public class GlideConfigImpl extends ImageConfig {
     private int cacheStrategy;//0对应DiskCacheStrategy.all,1对应DiskCacheStrategy.NONE,2对应DiskCacheStrategy.SOURCE,3对应DiskCacheStrategy.RESULT
     private int fallback; //请求 url 为空,则使用此图片作为占位符
-    private BitmapTransformation transformation;//glide用它来改变图形的形状
+    private BitmapTransformation[] transformation;//glide用它来改变图形的形状
     private ImageView[] imageViews;
     private boolean isClearMemory;//清理内存缓存
     private boolean isClearDiskCache;//清理本地缓存
@@ -77,7 +77,7 @@ public class GlideConfigImpl extends ImageConfig {
         return cacheStrategy;
     }
 
-    public BitmapTransformation getTransformation() {
+    public BitmapTransformation[] getTransformation() {
         return transformation;
     }
 
@@ -169,7 +169,7 @@ public class GlideConfigImpl extends ImageConfig {
         private int cacheStrategy;//0对应DiskCacheStrategy.all,1对应DiskCacheStrategy.NONE,2对应DiskCacheStrategy.SOURCE,3对应DiskCacheStrategy.RESULT
         private int imageRadius;//图片每个圆角的大小
         private int blurValue;//高斯模糊值, 值越大模糊效果越大
-        private BitmapTransformation transformation;//glide用它来改变图形的形状
+        private BitmapTransformation[] transformation;//glide用它来改变图形的形状
         private ImageView[] imageViews;
         private boolean isClearMemory;//清理内存缓存
         private boolean isClearDiskCache;//清理本地缓存
@@ -229,7 +229,7 @@ public class GlideConfigImpl extends ImageConfig {
             return this;
         }
 
-        public Builder transformation(BitmapTransformation transformation) {
+        public Builder transformation(BitmapTransformation... transformation) {
             this.transformation = transformation;
             return this;
         }
