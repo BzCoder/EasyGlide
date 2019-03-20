@@ -28,8 +28,8 @@ EasyGlide是一款基于Glide4.9的工具封装类，功能不复杂，主要目
 	}
 ```
 
-## EasyGlide
-工具类都在EasyGlide当中，其中封装了常用的方法。包含基本图片加载功能（圆形，黑白，圆角矩形，高斯模糊，变换大小，监听下载进度），清除缓存。
+## EasyGlide 图片加载工具类
+工具类都在EasyGlide当中，其中封装了常用的图片加载方法。包含基本常用功能（圆形，黑白，圆角矩形，高斯模糊，变换大小，监听下载进度，清除缓存）。
 ```java
 
 EasyGlide.loadImage(this, url4, iv2);
@@ -54,12 +54,9 @@ EasyGlide.clearImage(this,imageView)；
 
 ```
 
-这些函数可能满足需求多种多样的你，你可以通过实现```loadImage(Context context, GlideConfigImpl config)```模仿EasyGlide来对EasyGlide进行扩充。
+这些函数可能不能满足需求多种多样的你，所以你也可以通过实现```loadImage(Context context, GlideConfigImpl config)```模仿EasyGlide来对EasyGlide进行扩充。
 
-## SelectImageView
-一个点击可以变为半透明的View，算是一个Bonus，所以放在了Sample里。逻辑十分简单，看代码即可。
-
-## CircleProgressView
+## CircleProgressView 仿微博图片加载盖层
 就是原封不动来自[GlideImageView](https://github.com/sunfusheng/GlideImageView) ，在布局中加入即可，有三种样式可供选择。
 ```xml
  <me.bzcoder.easyglide.progress.CircleProgressView
@@ -76,7 +73,12 @@ EasyGlide.clearImage(this,imageView)；
                 app:cpv_progressTextColor="@color/red"
                 app:cpv_progressTextSize="13sp"
                 app:cpv_progressTextVisible="false" />
-               
+             
+  
 ```
+## SelectImageView 仿微信图片点击响应
+一个点击可以变为半透明的View，算是一个Bonus，所以放在了Sample里。逻辑十分简单，看代码即可。
+
+
 
 
