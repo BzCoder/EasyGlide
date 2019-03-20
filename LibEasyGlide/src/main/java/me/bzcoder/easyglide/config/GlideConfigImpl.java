@@ -280,7 +280,7 @@ public class GlideConfigImpl extends ImageConfig {
             return this;
         }
 
-        public Builder ProgressListner(OnProgressListener onProgressListener) {
+        public Builder progressListener(OnProgressListener onProgressListener) {
             this.onProgressListener = onProgressListener;
             return this;
         }

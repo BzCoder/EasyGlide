@@ -4,21 +4,33 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import me.bzcoder.easyglide.EasyGlide;
+import me.bzcoder.easyglide.progress.CircleProgressView;
+import me.bzcoder.easyglide.progress.OnProgressListener;
+import me.bzcoder.easyglide.view.SelectImageView;
 import me.bzcoder.nidegridphotoview.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView tv1;
 
-
-    String url1 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497688355699&di=ea69a930b82ce88561c635089995e124&imgtype=0&src=http%3A%2F%2Fcms-bucket.nosdn.127.net%2Ff84e566bcf654b3698363409fbd676ef20161119091503.jpg";
-    String url2 = "http://img1.imgtn.bdimg.com/it/u=4027212837,1228313366&fm=23&gp=0.jpg";
-    String url3 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529402445474&di=b5da3b2f6a466e618e1e32d4dd2bda4d&imgtype=0&src=http%3A%2F%2F2b.zol-img.com.cn%2Fproduct%2F133_500x2000%2F801%2Fce21ke76FRh4A.jpg";
-
-
-    String url4 = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=579539400,2248223712&fm=26&gp=0.jpg";
+    String url1 = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=579539400,2248223712&fm=26&gp=0.jpg";
+    String url2 = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=370513584,2329026648&fm=27&gp=0.jpg";
+    String url3 = "https://img5.duitang.com/uploads/item/201411/24/20141124111858_aeWeU.thumb.700_0.gif";
+    String url4 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553063390335&di=65e36f298c8089d8855058921b47fc57&imgtype=0&src=http%3A%2F%2Fbannerdesign.cn%2Fwp-content%2Fuploads%2F2015%2F02%2F20150204014336322.jpg";
+    private ImageView iv0;
+    private ImageView iv1;
+    private ImageView iv2;
+    private ImageView iv3;
+    private ImageView iv4;
+    private ImageView iv5;
+    private ImageView iv6;
+    private SelectImageView iv7;
+    private ImageView iv8;
+    private ImageView iv9;
+    private ImageView iv10;
+    private CircleProgressView circleProgressView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +40,47 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initView() {
-        tv1 =  findViewById(R.id.tv_1);
-        EasyGlide.loadImage(this,url4,tv1);
+        circleProgressView = findViewById(R.id.progressView);
+        iv0 = (ImageView) findViewById(R.id.iv_0);
+        iv1 = (ImageView) findViewById(R.id.iv_1);
+        iv2 = (ImageView) findViewById(R.id.iv_2);
+        iv3 = (ImageView) findViewById(R.id.iv_3);
+        iv4 = (ImageView) findViewById(R.id.iv_4);
+        iv5 = (ImageView) findViewById(R.id.iv_5);
+        iv6 = (ImageView) findViewById(R.id.iv_6);
+        iv7 = (SelectImageView) findViewById(R.id.iv_7);
+        iv7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("123");
+            }
+        });
+        iv8 = (ImageView) findViewById(R.id.iv_8);
+        iv9 = (ImageView) findViewById(R.id.iv_9);
+        iv10 = (ImageView) findViewById(R.id.iv_10);
+
+        EasyGlide.loadImage(this, url4, iv0, (isComplete, percentage, bytesRead, totalBytes) -> {
+            if (isComplete) {
+                circleProgressView.setVisibility(View.GONE);
+            } else {
+                circleProgressView.setVisibility(View.VISIBLE);
+                circleProgressView.setProgress(percentage);
+            }
+        });
+
+        EasyGlide.loadImage(this,url1,iv1);
+
+        EasyGlide.loadImage(this,url3,iv2);
+
+        EasyGlide.loadBlurImage(this,url1,iv3);
+
+        EasyGlide.loadCircleImage(this,url1,iv4);
+
+        EasyGlide.loadRoundCornerImage(this,url1,iv5);
+
+        EasyGlide.loadGrayImage(this,url1,iv6);
+
+        EasyGlide.loadImage(this,url2,iv7);
     }
 
 

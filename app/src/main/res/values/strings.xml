@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">NideGridPhotoView</string>
+    <string name="app_name">EasyGlide</string>
+    <string name="hint">点击事件</string>
 </resources>

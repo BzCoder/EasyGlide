@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "me.bzcoder.nidegridphotoview"
-        minSdkVersion 23
+        applicationId "me.bzcoder.easyGlide"
+        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

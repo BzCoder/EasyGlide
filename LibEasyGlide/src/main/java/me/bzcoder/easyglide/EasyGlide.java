@@ -18,6 +18,7 @@ import me.bzcoder.easyglide.progress.GlideApp;
 import me.bzcoder.easyglide.progress.GlideImageViewTarget;
 import me.bzcoder.easyglide.progress.GlideRequest;
 import me.bzcoder.easyglide.progress.GlideRequests;
+import me.bzcoder.easyglide.progress.OnProgressListener;
 import me.bzcoder.easyglide.progress.ProgressManager;
 import me.bzcoder.easyglide.transformation.BlurTransformation;
 import me.bzcoder.easyglide.transformation.GrayscaleTransformation;
@@ -31,17 +32,22 @@ import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
  * @date : 2019/3/18 21:01
  */
 public class EasyGlide {
-    private boolean enableState = false;
-    private float pressedAlpha = 0.4f;
-    private float unableAlpha = 0.3f;
-    static int placeHolderImageView = R.color.white;
-    static int circlePlaceholderImageView = R.color.white;
+    static int placeHolderImageView = R.color.transparent;
+    static int circlePlaceholderImageView = R.color.transparent;
 
     public static void loadImage(Context context, String url, ImageView imageView) {
-        loadImage(context, url, imageView, placeHolderImageView);
+        loadImage(context, url, imageView, placeHolderImageView, null);
+    }
+
+    public static void loadImage(Context context, String url, ImageView imageView, OnProgressListener onProgressListener) {
+        loadImage(context, url, imageView, placeHolderImageView, onProgressListener);
     }
 
     public static void loadImage(Context context, String url, ImageView imageView, @DrawableRes int placeHolder) {
+        loadImage(context, url, imageView, placeHolder, null);
+    }
+
+    public static void loadImage(Context context, String url, ImageView imageView, @DrawableRes int placeHolder, OnProgressListener onProgressListener) {
         loadImage(context,
                 GlideConfigImpl
                         .builder()
@@ -51,6 +57,7 @@ public class EasyGlide {
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
                         .imageView(imageView)
+                        .progressListener(onProgressListener)
                         .build());
     }
 
@@ -90,6 +97,10 @@ public class EasyGlide {
     }
 
 
+    public static void loadBlurImage(Context context, String url, ImageView imageView) {
+        loadBlurImage(context, url, 10, imageView, placeHolderImageView);
+    }
+
     public static void loadBlurImage(Context context, String url, int radius, ImageView imageView) {
         loadBlurImage(context, url, radius, imageView, placeHolderImageView);
     }
@@ -108,15 +119,6 @@ public class EasyGlide {
     }
 
 
-    /**
-     * public enum CornerType {
-     * ALL,
-     * TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT,
-     * TOP, BOTTOM, LEFT, RIGHT,
-     * OTHER_TOP_LEFT, OTHER_TOP_RIGHT, OTHER_BOTTOM_LEFT, OTHER_BOTTOM_RIGHT,
-     * DIAGONAL_FROM_TOP_LEFT, DIAGONAL_FROM_TOP_RIGHT
-     * }
-     */
     public static void loadRoundCornerImage(Context context, String url, ImageView imageView) {
         loadRoundCornerImage(context, url, 30, 0, imageView, placeHolderImageView);
     }
@@ -236,6 +238,8 @@ public class EasyGlide {
         if (config.getOnProgressListener() != null) {
             ProgressManager.addListener(config.getUrl(), config.getOnProgressListener());
         }
+
+
         glideRequest.into(new GlideImageViewTarget(config.getImageView(), config.getUrl()));
     }
 }
