@@ -3,7 +3,14 @@
 
 EasyGlide是一款基于Glide4.9的工具封装类，功能不复杂，主要目的是为了方便使用，防止重复劳动，一行代码搞定一切。工程中对于进度的监听参考了[GlideImageView](https://github.com/sunfusheng/GlideImageView) 由于GlideImageView必须要把图片类更换成其自带类，这对于代码的侵入性实在是太高，因此还是选择重新封装。
 
+# 演示
+
+![](https://github.com/BzCoder/EasyGlide/blob/master/image/demo.gif)
+
+
+
 # 使用方法
+## 引入
 
 ```
 
@@ -72,8 +79,4 @@ EasyGlide.clearImage(this,imageView)；
                
 ```
 
-
-# 演示
-
-![](https://github.com/BzCoder/EasyGlide/blob/master/image/demo.gif)
 
