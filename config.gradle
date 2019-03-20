@@ -101,14 +101,7 @@ ext {
             "progressmanager"          : "me.jessyan:progressmanager:1.5.0",
             "retrofit-url-manager"     : "me.jessyan:retrofit-url-manager:1.4.0",
             "lifecyclemodel"           : "me.jessyan:lifecyclemodel:1.0.1",
-            "mmkv"                     : "com.tencent:mmkv:1.0.17",
-            "GSYVideoPlayer"           : "com.shuyu:GSYVideoPlayer:6.0.3",
-            "getui"                    : "com.getui:sdk:2.13.0.0",
-            "aliyunOss"                : "com.aliyun.dpa:oss-android-sdk:+",
 
-            //photo
-            "photopicker"              : "com.zhihu.android:matisse:0.5.2-beta4",
-            "ucrop"                    : "com.github.yalantis:ucrop:2.2.2",
 
             //test
             "junit"                    : "junit:junit:4.12",
@@ -122,7 +115,6 @@ ext {
             "logger"                   : "com.orhanobut:logger:2.2.0",
             "canary-debug"             : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
             "canary-release"           : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}",
-            "umeng-analytics"          : "com.umeng.analytics:analytics:6.0.1",
 
     ]
 }

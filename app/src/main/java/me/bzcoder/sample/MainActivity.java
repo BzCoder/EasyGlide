@@ -1,8 +1,10 @@
 package me.bzcoder.sample;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     String url1 = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=579539400,2248223712&fm=26&gp=0.jpg";
     String url2 = "http://s3.sinaimg.cn/mw690/002c2mEVzy7nKnBsVCqc2&690";
     String url3 = "https://img5.duitang.com/uploads/item/201411/24/20141124111858_aeWeU.thumb.700_0.gif";
-    String url4 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553063390335&di=65e36f298c8089d8855058921b47fc57&imgtype=0&src=http%3A%2F%2Fbannerdesign.cn%2Fwp-content%2Fuploads%2F2015%2F02%2F20150204014336322.jpg";
+    String url4 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553095565699&di=219f0c4a8ac0d1074bc401f52abc7114&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201701%2F01%2F20170101234706_KGtEv.png";
     private ImageView iv0;
     private ImageView iv1;
     private ImageView iv2;
@@ -65,28 +67,40 @@ public class MainActivity extends AppCompatActivity {
         iv9 = (ImageView) findViewById(R.id.iv_9);
         iv10 = (ImageView) findViewById(R.id.iv_10);
 
+
+
         EasyGlide.loadImage(this, url4, iv0, (isComplete, percentage, bytesRead, totalBytes) -> {
-            if (isComplete) {
-                circleProgressView.setVisibility(View.GONE);
-            } else {
-                circleProgressView.setVisibility(View.VISIBLE);
-                circleProgressView.setProgress(percentage);
-            }
+//            if (isComplete) {
+//                circleProgressView.setVisibility(View.GONE);
+//
+//                circleProgressView.setVisibility(View.VISIBLE);
+//                circleProgressView.setProgress(percentage);
+////            }
         });
+        circleProgressView.setVisibility(View.VISIBLE);
 
-        EasyGlide.loadImage(this, url1, iv1);
+        ValueAnimator animator = ValueAnimator.ofInt(0, 100);
 
-        EasyGlide.loadImage(this, url3, iv2);
 
-        EasyGlide.loadBlurImage(this, url1, iv3);
+        animator.setDuration(2000);
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.setInterpolator(new LinearInterpolator());
+        animator.addUpdateListener(animation -> circleProgressView.setProgress((Integer) animator.getAnimatedValue()));
+        animator.start();
 
-        EasyGlide.loadCircleImage(this, url1, iv4);
+        EasyGlide.loadImage(this, url3, iv1);
 
-        EasyGlide.loadRoundCornerImage(this, url1, iv5);
+        EasyGlide.loadImage(this, url4, iv2);
 
-        EasyGlide.loadGrayImage(this, url1, iv6);
+        EasyGlide.loadBlurImage(this, url4, iv3);
 
-        EasyGlide.loadImage(this, url2, iv7);
+        EasyGlide.loadCircleImage(this, url4, iv4);
+
+        EasyGlide.loadRoundCornerImage(this, url4, iv5);
+
+        EasyGlide.loadGrayImage(this, url4, iv6);
+
+        EasyGlide.loadResizeXYImage(this, url2,800,200, iv7);
 
         EasyGlide.loadImageWithTransformation(this, url2, iv8, new GrayscaleTransformation(),new RoundedCornersTransformation(50, 0));
 
