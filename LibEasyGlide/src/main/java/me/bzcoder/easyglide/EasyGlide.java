@@ -64,6 +64,24 @@ public class EasyGlide {
                         .build());
     }
 
+    public static void loadResizeXYImage(Context context, String url, int resizeX, int resizeY, ImageView imageView) {
+        loadResizeXYImage(context, url, resizeX, resizeY, imageView, placeHolderImageView);
+    }
+
+    public static void loadResizeXYImage(Context context, String url, int resizeX, int resizeY, ImageView imageView, @DrawableRes int placeHolder) {
+        loadImage(context,
+                GlideConfigImpl
+                        .builder()
+                        .url(url)
+                        .isCropCenter(true)
+                        .isCrossFade(true)
+                        .resize(resizeX, resizeX)
+                        .errorPic(placeHolder)
+                        .placeholder(placeHolder)
+                        .imageView(imageView)
+                        .build());
+    }
+
 
     public static void loadCircleImage(Context context, String url, ImageView imageView) {
         loadCircleImage(context, url, imageView, circlePlaceholderImageView);
@@ -152,11 +170,11 @@ public class EasyGlide {
      * CircleCrop
      * CenterCrop
      */
-    public static void loadImageWithTransformation(Context context, String url, ImageView imageView,BitmapTransformation... bitmapTransformations) {
-        loadImageWithTransformation(context,url,imageView,R.color.transparent, bitmapTransformations);
+    public static void loadImageWithTransformation(Context context, String url, ImageView imageView, BitmapTransformation... bitmapTransformations) {
+        loadImageWithTransformation(context, url, imageView, R.color.transparent, bitmapTransformations);
     }
 
-    public static void loadImageWithTransformation(Context context, String url, ImageView imageView, @DrawableRes int placeHolder,BitmapTransformation... bitmapTransformations) {
+    public static void loadImageWithTransformation(Context context, String url, ImageView imageView, @DrawableRes int placeHolder, BitmapTransformation... bitmapTransformations) {
         loadImage(context,
                 GlideConfigImpl
                         .builder()
@@ -168,6 +186,7 @@ public class EasyGlide {
                         .imageView(imageView)
                         .build());
     }
+
     /**
      * 预加载
      *
@@ -273,7 +292,7 @@ public class EasyGlide {
     /**
      * 清除本地缓存
      */
-    public static  void clearDiskCache(final Context context){
+    public static void clearDiskCache(final Context context) {
         Observable.just(0)
                 .observeOn(Schedulers.io())
                 .subscribe(integer -> Glide.get(context).clearDiskCache());
@@ -282,7 +301,7 @@ public class EasyGlide {
     /**
      * 清除内存缓存
      */
-    public static  void clearMemory(final Context context){
+    public static void clearMemory(final Context context) {
         Observable.just(0)
                 .observeOn(Schedulers.io())
                 .subscribe(integer -> Glide.get(context).clearDiskCache());
@@ -290,7 +309,7 @@ public class EasyGlide {
 
     /**
      */
-    public static  void clearImage(final Context context,ImageView imageView){
+    public static void clearImage(final Context context, ImageView imageView) {
         EasyGlideApp.get(context).getRequestManagerRetriever().get(context).clear(imageView);
     }
 

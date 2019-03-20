@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     String url1 = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=579539400,2248223712&fm=26&gp=0.jpg";
-    String url2 = "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=370513584,2329026648&fm=27&gp=0.jpg";
+    String url2 = "http://s3.sinaimg.cn/mw690/002c2mEVzy7nKnBsVCqc2&690";
     String url3 = "https://img5.duitang.com/uploads/item/201411/24/20141124111858_aeWeU.thumb.700_0.gif";
     String url4 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553063390335&di=65e36f298c8089d8855058921b47fc57&imgtype=0&src=http%3A%2F%2Fbannerdesign.cn%2Fwp-content%2Fuploads%2F2015%2F02%2F20150204014336322.jpg";
     private ImageView iv0;
