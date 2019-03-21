@@ -36,8 +36,8 @@ import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
  * @date : 2019/3/18 21:01
  */
 public class EasyGlide {
-    static int placeHolderImageView = R.color.transparent;
-    static int circlePlaceholderImageView = R.color.transparent;
+    public static int placeHolderImageView = R.color.transparent;
+    public static int circlePlaceholderImageView = R.color.transparent;
 
     public static void loadImage(Context context, String url, ImageView imageView) {
         loadImage(context, url, imageView, placeHolderImageView, null);

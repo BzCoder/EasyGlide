@@ -82,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(animation -> circleProgressView.setProgress((Integer) animator.getAnimatedValue()));
 
+        EasyGlide.placeHolderImageView = R.color.red;
+
+        EasyGlide.circlePlaceholderImageView = R.color.red;
+
         EasyGlide.loadImage(this, url3, iv1);
 
         EasyGlide.loadImage(this, url4, iv2);
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         EasyGlide.loadImageWithTransformation(this, url2, iv9, new BlurTransformation(this, 20)
                 , new GrayscaleTransformation(), new CircleCrop());
+
     }
 
 
