@@ -39,8 +39,8 @@ dependencies {
     api 'com.github.bumptech.glide:annotations:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
-    compileOnly rootProject.ext.dependencies["rxjava2"]
-    compileOnly rootProject.ext.dependencies["okhttp3"]
-    compileOnly rootProject.ext.dependencies["rxandroid2"]
+    implementation rootProject.ext.dependencies["rxjava2"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["rxandroid2"]
 
 }

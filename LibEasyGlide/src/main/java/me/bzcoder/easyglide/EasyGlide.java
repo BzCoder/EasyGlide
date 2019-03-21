@@ -110,7 +110,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new GrayscaleTransformation(),new CenterCrop())
+                        .transformation(new CenterCrop(),new GrayscaleTransformation())
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
@@ -132,7 +132,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new BlurTransformation(context, radius),new CenterCrop())
+                        .transformation(new CenterCrop(),new BlurTransformation(context, radius))
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
@@ -154,7 +154,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new RoundedCornersTransformation(radius, margin),new CenterCrop())
+                        .transformation(new CenterCrop(),new RoundedCornersTransformation(radius, margin))
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)

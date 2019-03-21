@@ -44,8 +44,7 @@ public class GrayscaleTransformation extends BitmapTransformation {
     int width = toTransform.getWidth();
     int height = toTransform.getHeight();
 
-    Bitmap.Config config =
-        toTransform.getConfig() != null ? toTransform.getConfig() : Bitmap.Config.ARGB_8888;
+    Bitmap.Config config = toTransform.getConfig() != null ? toTransform.getConfig() : Bitmap.Config.ARGB_8888;
     Bitmap bitmap = pool.get(width, height, config);
 
     Canvas canvas = new Canvas(bitmap);
