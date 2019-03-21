@@ -28,6 +28,11 @@ EasyGlide是一款基于Glide4.9的工具封装类，功能不复杂，主要是
 	}
 ```
 
+主要包含以下三个小模块：
+- EasyGlide
+- CircleProgressView
+- SelectImageView
+
 ## EasyGlide 图片加载工具类
 工具类都在EasyGlide当中，其中封装了常用的图片加载方法。包含基本常用功能（圆形，黑白，圆角矩形，高斯模糊，变换大小，监听下载进度，清除缓存）。
 ```java
