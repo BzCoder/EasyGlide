@@ -28,7 +28,7 @@ EasyGlide是一款基于Glide4.9的工具封装类，功能不复杂，主要是
 	}
 ```
 
-主要包含以下三个小模块：
+## 主要包含以下三个小模块：
 - EasyGlide
 - CircleProgressView
 - SelectImageView
@@ -59,7 +59,15 @@ EasyGlide.clearImage(this,imageView)；
 
 ```
 
-这些函数可能不能满足需求多种多样的你，所以你也可以通过实现```loadImage(Context context, GlideConfigImpl config)```模仿EasyGlide来对EasyGlide进行扩充。
+这些函数可能不能满足需求多种多样的你，所以你也可以通过实现```loadImage(Context context, GlideConfigImpl config)```模仿EasyGlide来对EasyGlide进行扩充。也欢迎直接替issue给我，我来帮您扩充。
+
+你可以尽早的设置全局placeholder，当然也可以单独设置placeholder。
+```java
+ EasyGlide.placeHolderImageView = R.color.red;
+
+ EasyGlide.circlePlaceholderImageView = R.color.red;
+ 
+```
 
 ## CircleProgressView 仿微博图片加载盖层
 就是原封不动来自[GlideImageView](https://github.com/sunfusheng/GlideImageView) ，在布局中加入即可，有三种样式可供选择。
