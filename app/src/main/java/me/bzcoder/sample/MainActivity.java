@@ -6,18 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import me.bzcoder.easyglide.EasyGlide;
 import me.bzcoder.easyglide.progress.CircleProgressView;
-import me.bzcoder.easyglide.progress.OnProgressListener;
 import me.bzcoder.easyglide.transformation.BlurTransformation;
 import me.bzcoder.easyglide.transformation.GrayscaleTransformation;
 import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
-import me.bzcoder.easyglide.view.SelectImageView;
 import me.bzcoder.nidegridphotoview.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,18 +72,15 @@ public class MainActivity extends AppCompatActivity {
 //
 //                circleProgressView.setVisibility(View.VISIBLE);
 //                circleProgressView.setProgress(percentage);
-////            }
+//           }
         });
         circleProgressView.setVisibility(View.VISIBLE);
 
         ValueAnimator animator = ValueAnimator.ofInt(0, 100);
-
-
         animator.setDuration(2000);
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(animation -> circleProgressView.setProgress((Integer) animator.getAnimatedValue()));
-        animator.start();
 
         EasyGlide.loadImage(this, url3, iv1);
 

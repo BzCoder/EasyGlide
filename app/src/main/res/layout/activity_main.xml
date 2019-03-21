@@ -77,7 +77,7 @@
             android:layout_height="200dp"
             android:layout_marginBottom="15dp" />
 
-        <me.bzcoder.easyglide.view.SelectImageView
+        <me.bzcoder.sample.SelectImageView
             android:id="@+id/iv_7"
             android:layout_width="match_parent"
             android:layout_height="200dp"

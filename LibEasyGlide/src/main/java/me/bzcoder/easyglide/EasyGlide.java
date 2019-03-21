@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.util.Preconditions;
@@ -109,7 +110,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new GrayscaleTransformation())
+                        .transformation(new GrayscaleTransformation(),new CenterCrop())
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
@@ -131,7 +132,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new BlurTransformation(context, radius))
+                        .transformation(new BlurTransformation(context, radius),new CenterCrop())
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
@@ -153,7 +154,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new RoundedCornersTransformation(radius, margin))
+                        .transformation(new RoundedCornersTransformation(radius, margin),new CenterCrop())
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)

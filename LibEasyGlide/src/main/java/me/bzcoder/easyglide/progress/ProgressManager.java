@@ -4,7 +4,6 @@ import android.text.TextUtils;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import me.bzcoder.easyglide.http.SSLSocketClient;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -33,8 +32,6 @@ public class ProgressManager {
                                 .body(new ProgressResponseBody(request.url().toString(), LISTENER, response.body()))
                                 .build();
                     })
-//                    .socketFactory(SSLSocketClient.getSSLSocketFactory())
-//                    .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
                     .build();
         }
         return okHttpClient;
