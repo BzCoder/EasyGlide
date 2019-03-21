@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(animation -> circleProgressView.setProgress((Integer) animator.getAnimatedValue()));
+        animator.start();
 
         EasyGlide.placeHolderImageView = R.color.red;
 
