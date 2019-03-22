@@ -2,7 +2,9 @@ package me.bzcoder.easyglide;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -25,6 +27,7 @@ import me.bzcoder.easyglide.progress.GlideRequests;
 import me.bzcoder.easyglide.progress.OnProgressListener;
 import me.bzcoder.easyglide.progress.ProgressManager;
 import me.bzcoder.easyglide.transformation.BlurTransformation;
+import me.bzcoder.easyglide.transformation.CircleWithBorderTransformation;
 import me.bzcoder.easyglide.transformation.GrayscaleTransformation;
 import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
 
@@ -162,6 +165,26 @@ public class EasyGlide {
                         .build());
     }
 
+    public static void loadCircleWithBorderImage(Context context, String url, ImageView imageView) {
+        loadCircleWithBorderImage(context, url, 2, Color.parseColor("#ACACAC"), imageView, placeHolderImageView);
+    }
+
+    public static void loadCircleWithBorderImage(Context context, String url, int borderWidth, @ColorInt int borderColor, ImageView imageView) {
+        loadCircleWithBorderImage(context, url, borderWidth, borderColor, imageView, placeHolderImageView);
+    }
+
+    public static void loadCircleWithBorderImage(Context context, String url,  int borderWidth, @ColorInt int borderColor, ImageView imageView, @DrawableRes int placeHolder) {
+        loadImage(context,
+                GlideConfigImpl
+                        .builder()
+                        .url(url)
+                        .transformation(new CenterCrop(),new CircleWithBorderTransformation(borderWidth, borderColor))
+                        .isCrossFade(true)
+                        .errorPic(placeHolder)
+                        .placeholder(placeHolder)
+                        .imageView(imageView)
+                        .build());
+    }
 
     /**
      * 提供了一下如下变形类，支持叠加使用

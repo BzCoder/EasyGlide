@@ -103,9 +103,10 @@ public class MainActivity extends AppCompatActivity {
 
         EasyGlide.loadImageWithTransformation(this, url2, iv8, new GrayscaleTransformation(),new RoundedCornersTransformation(50, 0));
 
-        EasyGlide.loadImageWithTransformation(this, url2, iv9, new BlurTransformation(this, 20)
-                , new GrayscaleTransformation(), new CircleCrop());
+        EasyGlide.loadCircleWithBorderImage(this, url2, iv9);
 
+        EasyGlide.loadImageWithTransformation(this, url2, iv10, new BlurTransformation(this, 20)
+                , new GrayscaleTransformation(), new CircleCrop());
     }
 
 
