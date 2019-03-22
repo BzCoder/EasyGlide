@@ -1,7 +1,7 @@
 # EasyGlide
 [![](https://www.jitpack.io/v/BzCoder/EasyGlide.svg)](https://www.jitpack.io/#BzCoder/EasyGlide)
 
-EasyGlide是一款基于Glide4.9的工具封装类，功能不复杂，主要是为了方便使用以及防止重复劳动，主要一行代码就可以搞定一切。工程中对于图片加载进度的监听参考了[GlideImageView](https://github.com/sunfusheng/GlideImageView)，但是由于GlideImageView对于代码的侵入性实在是太高，因此选择重新封装。
+EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要是为了方便使用以及防止重复劳动，一行代码就可以搞定一切。工程中对于图片加载进度的监听参考了[GlideImageView](https://github.com/sunfusheng/GlideImageView)，但是由于GlideImageView对于代码的侵入性太高，因此选择重新封装。欢迎大家使用并提出新的需求，我会及时更新。
 
 # 演示
 
