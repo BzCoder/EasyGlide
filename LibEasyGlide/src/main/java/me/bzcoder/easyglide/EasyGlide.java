@@ -178,7 +178,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new CenterCrop(),new CircleWithBorderTransformation(borderWidth, borderColor))
+                        .transformation(new CircleWithBorderTransformation(borderWidth, borderColor))
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
