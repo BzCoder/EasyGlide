@@ -31,26 +31,43 @@ import me.bzcoder.easyglide.progress.OnProgressListener;
  * ================================================
  */
 public class GlideConfigImpl extends ImageConfig {
-    private int cacheStrategy;//0对应DiskCacheStrategy.all,1对应DiskCacheStrategy.NONE,2对应DiskCacheStrategy.SOURCE,3对应DiskCacheStrategy.RESULT
-    private int fallback; //请求 url 为空,则使用此图片作为占位符
+
+    /**
+     * 0 对应DiskCacheStrategy.all
+     * 1 对应DiskCacheStrategy.NONE
+     * 2 对应DiskCacheStrategy.SOURCE
+     * 3 对应DiskCacheStrategy.RESULT
+     */
+
+    private int cacheStrategy;
+    //请求 url 为空,则使用此图片作为占位符
+    private int fallback;
     private BitmapTransformation[] transformation;//glide用它来改变图形的形状
     private ImageView[] imageViews;
-    private boolean isClearMemory;//清理内存缓存
-    private boolean isClearDiskCache;//清理本地缓存
+    //清理内存缓存
+    private boolean isClearMemory;
+    //清理本地缓存
+    private boolean isClearDiskCache;
     private Drawable placeholderDrawable;
     private int resizeX;
     private boolean isCropCenter;
     private boolean isCropCircle;
     private boolean isFitCenter;
-    private DecodeFormat formate;//图片格式
+    //图片格式
+    private DecodeFormat formate;
     private int resizeY;
-    private int imageRadius;//图片每个圆角的大小
-    private int blurValue;//高斯模糊值, 值越大模糊效果越大
-    private boolean isCrossFade;//是否使用淡入淡出过渡动画
-    private OnProgressListener onProgressListener;//监听加载进度
+    //图片每个圆角的大小
+    private int imageRadius;
+    //高斯模糊值, 值越大模糊效果越大
+    private int blurValue;
+    //是否使用淡入淡出过渡动画
+    private boolean isCrossFade;
+    //监听加载进度
+    private OnProgressListener onProgressListener;
 
     private GlideConfigImpl(Builder builder) {
         this.url = builder.url;
+        this.drawableId = builder.drawableId;
         this.imageView = builder.imageView;
         this.placeholder = builder.placeholder;
         this.placeholderDrawable = builder.placeholderDrawable;
@@ -161,6 +178,7 @@ public class GlideConfigImpl extends ImageConfig {
     public static final class Builder {
         private int resizeX;
         private String url;
+        private int drawableId;
         private ImageView imageView;
         private int placeholder;
         private Drawable placeholderDrawable;
@@ -186,6 +204,11 @@ public class GlideConfigImpl extends ImageConfig {
 
         public Builder url(String url) {
             this.url = url;
+            return this;
+        }
+
+        public Builder drawableId(int drawableId) {
+            this.drawableId = drawableId;
             return this;
         }
 

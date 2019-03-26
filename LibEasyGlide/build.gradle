@@ -41,5 +41,4 @@ dependencies {
     implementation rootProject.ext.dependencies["rxjava2"]
     implementation rootProject.ext.dependencies["okhttp3"]
     implementation rootProject.ext.dependencies["rxandroid2"]
-
 }

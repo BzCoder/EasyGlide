@@ -19,6 +19,8 @@ import android.widget.ImageView;
 
 public class ImageConfig {
     protected String url;
+
+    protected int drawableId;
     protected ImageView imageView;
     protected int placeholder;
     protected int errorPic;
@@ -30,6 +32,9 @@ public class ImageConfig {
 
     public ImageView getImageView() {
         return imageView;
+    }
+    public int getDrawableId() {
+        return drawableId;
     }
 
     public int getPlaceholder() {

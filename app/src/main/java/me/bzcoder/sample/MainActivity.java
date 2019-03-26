@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv8;
     private ImageView iv9;
     private ImageView iv10;
+    private ImageView iv11;
     private CircleProgressView circleProgressView;
 
     @Override
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         iv8 = (ImageView) findViewById(R.id.iv_8);
         iv9 = (ImageView) findViewById(R.id.iv_9);
         iv10 = (ImageView) findViewById(R.id.iv_10);
-
+        iv11 = (ImageView) findViewById(R.id.iv_11);
 
 
         EasyGlide.loadImage(this, url4, iv0, (isComplete, percentage, bytesRead, totalBytes) -> {
@@ -107,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
         EasyGlide.loadImageWithTransformation(this, url2, iv10, new BlurTransformation(this, 20)
                 , new GrayscaleTransformation(), new CircleCrop());
+
+        EasyGlide.loadImage(this,R.drawable.test,iv11);
     }
 
 

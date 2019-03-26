@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
+import android.support.annotation.RawRes;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -41,6 +43,8 @@ import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
 public class EasyGlide {
     public static int placeHolderImageView = R.color.transparent;
     public static int circlePlaceholderImageView = R.color.transparent;
+
+
 
     public static void loadImage(Context context, String url, ImageView imageView) {
         loadImage(context, url, imageView, placeHolderImageView, null);
@@ -113,7 +117,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new CenterCrop(),new GrayscaleTransformation())
+                        .transformation(new CenterCrop(), new GrayscaleTransformation())
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
@@ -135,7 +139,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new CenterCrop(),new BlurTransformation(context, radius))
+                        .transformation(new CenterCrop(), new BlurTransformation(context, radius))
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
@@ -157,7 +161,7 @@ public class EasyGlide {
                 GlideConfigImpl
                         .builder()
                         .url(url)
-                        .transformation(new CenterCrop(),new RoundedCornersTransformation(radius, margin))
+                        .transformation(new CenterCrop(), new RoundedCornersTransformation(radius, margin))
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
@@ -173,7 +177,7 @@ public class EasyGlide {
         loadCircleWithBorderImage(context, url, borderWidth, borderColor, imageView, placeHolderImageView);
     }
 
-    public static void loadCircleWithBorderImage(Context context, String url,  int borderWidth, @ColorInt int borderColor, ImageView imageView, @DrawableRes int placeHolder) {
+    public static void loadCircleWithBorderImage(Context context, String url, int borderWidth, @ColorInt int borderColor, ImageView imageView, @DrawableRes int placeHolder) {
         loadImage(context,
                 GlideConfigImpl
                         .builder()
@@ -211,6 +215,21 @@ public class EasyGlide {
                         .build());
     }
 
+
+    /**
+     * 加载本地图片
+     * @param context
+     * @param drawableId
+     * @param imageView
+     */
+    public static void loadImage(Context context, @RawRes @DrawableRes @Nullable Integer drawableId, ImageView imageView) {
+        loadImage(context, GlideConfigImpl
+                .builder()
+                .drawableId(drawableId)
+                .isCropCenter(true)
+                .imageView(imageView)
+                .build());
+    }
     /**
      * 预加载
      *
@@ -224,14 +243,19 @@ public class EasyGlide {
     public static void loadImage(Context context, GlideConfigImpl config) {
         Preconditions.checkNotNull(context, "Context is required");
         Preconditions.checkNotNull(config, "ImageConfigImpl is required");
-        if (TextUtils.isEmpty(config.getUrl())) {
-            //throw new NullPointerException("Url is required");
-        }
+
         Preconditions.checkNotNull(config.getImageView(), "ImageView is required");
         GlideRequests requests;
         requests = EasyGlideApp.with(context);
-        GlideRequest<Drawable> glideRequest;
-        glideRequest = requests.load(config.getUrl());
+        GlideRequest<Drawable> glideRequest = null;
+        if (!TextUtils.isEmpty(config.getUrl())) {
+            glideRequest = requests.load(config.getUrl());
+        }
+
+        if (config.getDrawableId() != 0) {
+            glideRequest = requests.load(config.getDrawableId());
+        }
+
         //缓存策略
         switch (config.getCacheStrategy()) {
             case 0:
