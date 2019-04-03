@@ -26,7 +26,7 @@ PS：最近发现Glide一个问题，单页上GIF数目过多时，GIF会疯狂�
 ```
 
 	dependencies {
-	        implementation 'com.github.BzCoder:EasyGlide:1.0.0'
+	        implementation 'com.github.BzCoder:EasyGlide:1.0.2'
 	}
 ```
 
@@ -71,6 +71,23 @@ EasyGlide.clearImage(this,imageView)；
  
 ```
 
+## 图片下载
+```java
+ @AfterPermissionGranted(WRITE_EXTERNAL_PERM)
+    private void downloadImage() {
+        if (hasStoragePermission()) {
+            EasyGlide.downloadImageToGallery(iv1.getContext(), url3);
+        } else {
+            EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.need_write_external),
+                    WRITE_EXTERNAL_PERM,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+    }
+
+```
 ## CircleProgressView 仿微博图片加载盖层
 就是原封不动来自[GlideImageView](https://github.com/sunfusheng/GlideImageView) ，在布局中加入即可，有三种样式可供选择。
 ```xml
