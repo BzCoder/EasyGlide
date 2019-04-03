@@ -1,5 +1,6 @@
 package me.bzcoder.sample;
 
+import android.Manifest;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +13,12 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import me.bzcoder.easyglide.EasyGlide;
 import me.bzcoder.easyglide.progress.CircleProgressView;
+import me.bzcoder.easyglide.sample.R;
 import me.bzcoder.easyglide.transformation.BlurTransformation;
 import me.bzcoder.easyglide.transformation.GrayscaleTransformation;
 import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
-import me.bzcoder.nidegridphotoview.R;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -88,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
 
         EasyGlide.circlePlaceholderImageView = R.color.red;
 
+        iv1.setOnClickListener(v ->
+
+
+                downloadImage()
+
+        );
+
         EasyGlide.loadImage(this, url3, iv1);
 
         EasyGlide.loadImage(this, url4, iv2);
@@ -100,16 +110,37 @@ public class MainActivity extends AppCompatActivity {
 
         EasyGlide.loadGrayImage(this, url4, iv6);
 
-        EasyGlide.loadResizeXYImage(this, url2,800,200, iv7);
+        EasyGlide.loadResizeXYImage(this, url2, 800, 200, iv7);
 
-        EasyGlide.loadImageWithTransformation(this, url2, iv8, new GrayscaleTransformation(),new RoundedCornersTransformation(50, 0));
+        EasyGlide.loadImageWithTransformation(this, url2, iv8, new GrayscaleTransformation(), new RoundedCornersTransformation(50, 0));
 
         EasyGlide.loadCircleWithBorderImage(this, url2, iv9);
 
         EasyGlide.loadImageWithTransformation(this, url2, iv10, new BlurTransformation(this, 20)
                 , new GrayscaleTransformation(), new CircleCrop());
 
-        EasyGlide.loadImage(this,R.drawable.test,iv11);
+        EasyGlide.loadImage(this, R.drawable.test, iv11);
+    }
+
+    private boolean hasStoragePermission() {
+        return EasyPermissions.hasPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
+
+    private static final int WRITE_EXTERNAL_PERM = 123;
+
+
+    @AfterPermissionGranted(WRITE_EXTERNAL_PERM)
+    private void downloadImage() {
+        if (hasStoragePermission()) {
+            EasyGlide.downloadImageToGallery(iv1.getContext(), url3);
+        } else {
+            EasyPermissions.requestPermissions(
+                    this,
+                    getString(R.string.need_write_external),
+                    WRITE_EXTERNAL_PERM,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
     }
 
 

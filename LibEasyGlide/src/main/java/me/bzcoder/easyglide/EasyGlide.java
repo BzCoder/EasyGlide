@@ -1,25 +1,41 @@
 package me.bzcoder.easyglide;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
 import android.text.TextUtils;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.FutureTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.util.Preconditions;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.concurrent.ExecutionException;
+
 import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import me.bzcoder.easyglide.config.GlideConfigImpl;
 import me.bzcoder.easyglide.progress.EasyGlideApp;
@@ -43,7 +59,6 @@ import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
 public class EasyGlide {
     public static int placeHolderImageView = R.color.transparent;
     public static int circlePlaceholderImageView = R.color.transparent;
-
 
 
     public static void loadImage(Context context, String url, ImageView imageView) {
@@ -218,6 +233,7 @@ public class EasyGlide {
 
     /**
      * 加载本地图片
+     *
      * @param context
      * @param drawableId
      * @param imageView
@@ -230,6 +246,7 @@ public class EasyGlide {
                 .imageView(imageView)
                 .build());
     }
+
     /**
      * 预加载
      *
@@ -356,9 +373,59 @@ public class EasyGlide {
     }
 
     /**
+     * 取消图片加载
      */
     public static void clearImage(final Context context, ImageView imageView) {
         EasyGlideApp.get(context).getRequestManagerRetriever().get(context).clear(imageView);
+    }
+
+
+    /**
+     * 下载图片，并在媒体库中显示
+     * @param context
+     * @param imgUrl
+     */
+    @SuppressLint("CheckResult")
+    public static void downloadImageToGallery(final Context context, final String imgUrl) {
+        String extension = MimeTypeMap.getFileExtensionFromUrl(imgUrl);
+        Observable.create((ObservableOnSubscribe<File>)
+                emitter -> {
+                    // Glide提供了一个download() 接口来获取缓存的图片文件，
+                    // 但是前提必须要设置diskCacheStrategy方法的缓存策略为
+                    // DiskCacheStrategy.ALL或者DiskCacheStrategy.SOURCE，
+                    // 还有download()方法需要在子线程里进行
+                    File file = Glide.with(context).download(imgUrl).submit().get();
+                    String fileParentPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/easyGlide/Image";
+                    File appDir = new File(fileParentPath);
+                    if (!appDir.exists()) {
+                        appDir.mkdirs();
+                    } //获得原文件流
+                    FileInputStream fis = new FileInputStream(file);
+                    //保存的文件名
+                    String fileName = "easyGlide_" + System.currentTimeMillis() + "." + extension;
+                    //目标文件
+                    File targetFile = new File(appDir, fileName);
+                    //输出文件流
+                    FileOutputStream fos = new FileOutputStream(targetFile);
+                    // 缓冲数组
+                    byte[] b = new byte[1024 * 8];
+                    while (fis.read(b) != -1) {
+                        fos.write(b);
+                    }
+                    fos.flush();
+                    fis.close();
+                    fos.close();
+                    //扫描媒体库
+                    String mimeTypes = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+                    MediaScannerConnection.scanFile(context, new String[]{targetFile.getAbsolutePath()},
+                            new String[]{mimeTypes}, null);
+                    emitter.onNext(targetFile);
+                }).subscribeOn(Schedulers.io())
+                //发送事件在io线程
+                .observeOn(AndroidSchedulers.mainThread())
+                //最后切换主线程提示结果
+                .subscribe(file -> Toast.makeText(context, R.string.easy_glide_save_succss, Toast.LENGTH_SHORT).show(),
+                        throwable -> Toast.makeText(context, R.string.easy_glide_save_failed, Toast.LENGTH_SHORT).show());
     }
 
 
