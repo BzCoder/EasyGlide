@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv9;
     private ImageView iv10;
     private ImageView iv11;
+    private ImageView iv12;
     private CircleProgressView circleProgressView;
 
     @Override
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         iv9 = (ImageView) findViewById(R.id.iv_9);
         iv10 = (ImageView) findViewById(R.id.iv_10);
         iv11 = (ImageView) findViewById(R.id.iv_11);
-
+        iv12 = (ImageView) findViewById(R.id.iv_12);
 
         EasyGlide.loadImage(this, url4, iv0, (isComplete, percentage, bytesRead, totalBytes) -> {
 //            if (isComplete) {
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 , new GrayscaleTransformation(), new CircleCrop());
 
         EasyGlide.loadImage(this, R.drawable.test, iv11);
+        EasyGlide.loadImage(this, "", iv12);
     }
 
     private boolean hasStoragePermission() {
