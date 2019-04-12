@@ -26,7 +26,7 @@ PS：最近发现Glide一个问题，单页上GIF数目过多时，GIF会疯狂�
 ```
 
 	dependencies {
-	        implementation 'com.github.BzCoder:EasyGlide:1.0.2'
+	        implementation 'com.github.BzCoder:EasyGlide:1.0.3'
 	}
 ```
 
