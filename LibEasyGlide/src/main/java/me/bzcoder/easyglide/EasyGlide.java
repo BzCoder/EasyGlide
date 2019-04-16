@@ -76,7 +76,6 @@ public class EasyGlide {
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .progressListener(onProgressListener)
                         .build());
@@ -96,7 +95,6 @@ public class EasyGlide {
                         .resize(resizeX, resizeX)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .build());
     }
@@ -115,7 +113,6 @@ public class EasyGlide {
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .build());
     }
@@ -133,7 +130,6 @@ public class EasyGlide {
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .build());
     }
@@ -156,7 +152,6 @@ public class EasyGlide {
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .build());
     }
@@ -179,7 +174,6 @@ public class EasyGlide {
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .build());
     }
@@ -201,7 +195,6 @@ public class EasyGlide {
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .build());
     }
@@ -227,7 +220,6 @@ public class EasyGlide {
                         .isCrossFade(true)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
-                        .fallback(placeHolder)
                         .imageView(imageView)
                         .build());
     }
