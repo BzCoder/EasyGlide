@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv10;
     private ImageView iv11;
     private ImageView iv12;
+    private ImageView iv13;
     private CircleProgressView circleProgressView;
 
     @Override
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         iv10 = (ImageView) findViewById(R.id.iv_10);
         iv11 = (ImageView) findViewById(R.id.iv_11);
         iv12 = (ImageView) findViewById(R.id.iv_12);
-
+        iv13 = (ImageView) findViewById(R.id.iv_13);
         EasyGlide.loadImage(this, url4, iv0, (isComplete, percentage, bytesRead, totalBytes) -> {
 //            if (isComplete) {
 //                circleProgressView.setVisibility(View.GONE);
@@ -122,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
 
         EasyGlide.loadImage(this, R.drawable.test, iv11);
         EasyGlide.loadImage(this, "", iv12);
+
+        EasyGlide.loadBorderImage(this, url2, iv13);
     }
 
     private boolean hasStoragePermission() {

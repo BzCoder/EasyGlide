@@ -39,6 +39,7 @@ import me.bzcoder.easyglide.progress.GlideRequests;
 import me.bzcoder.easyglide.progress.OnProgressListener;
 import me.bzcoder.easyglide.progress.ProgressManager;
 import me.bzcoder.easyglide.transformation.BlurTransformation;
+import me.bzcoder.easyglide.transformation.BorderTransformation;
 import me.bzcoder.easyglide.transformation.CircleWithBorderTransformation;
 import me.bzcoder.easyglide.transformation.GrayscaleTransformation;
 import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
@@ -199,6 +200,27 @@ public class EasyGlide {
                         .build());
     }
 
+
+    public static void loadBorderImage(Context context, String url, ImageView imageView) {
+        loadBorderImage(context, url, 2, Color.parseColor("#ACACAC"), imageView, placeHolderImageView);
+    }
+
+    public static void loadBorderImage(Context context, String url, int borderWidth, @ColorInt int borderColor, ImageView imageView) {
+        loadBorderImage(context, url, borderWidth, borderColor, imageView, placeHolderImageView);
+    }
+
+    public static void loadBorderImage(Context context, String url, int borderWidth, @ColorInt int borderColor, ImageView imageView, @DrawableRes int placeHolder) {
+        loadImage(context,
+                GlideConfigImpl
+                        .builder()
+                        .url(url)
+                        .transformation(new BorderTransformation(borderWidth, borderColor))
+                        .isCrossFade(true)
+                        .errorPic(placeHolder)
+                        .placeholder(placeHolder)
+                        .imageView(imageView)
+                        .build());
+    }
     /**
      * 提供了一下如下变形类，支持叠加使用
      * BlurTransformation
