@@ -51,6 +51,10 @@ EasyGlide.loadGrayImage(this, url4, iv6);
 
 EasyGlide.loadResizeXYImage(this, url2, 800, 200, iv7);
 
+EasyGlide.loadCircleWithBorderImage(this, url2, iv9);
+
+EasyGlide.loadBorderImage(this, url2, iv13);
+
 EasyGlide.loadImageWithTransformation(this, url2, iv8, new GrayscaleTransformation(), new RoundedCornersTransformation(50, 0));
     
 EasyGlide.clearDiskCache(this)；
