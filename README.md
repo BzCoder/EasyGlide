@@ -3,7 +3,9 @@
 
 EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要是为了方便使用以及防止重复劳动，一行代码就可以搞定一切。工程中对于图片加载进度的监听参考了[GlideImageView](https://github.com/sunfusheng/GlideImageView)，但是由于GlideImageView对于代码的侵入性太高，因此选择重新封装。欢迎大家使用并提出新的需求，我会及时更新。
 
-PS：最近发现Glide一个问题，单页上GIF数目过多时，GIF会疯狂掉帧。
+有关于Glide的issue:
+- 单页上GIF数目过多时，GIF会疯狂掉帧。
+- 假如开启了CrossFade,加载完毕后PlaceHolder不会自动隐藏 [Glide #3195](https://github.com/bumptech/glide/issues/3195)
 
 # 演示
 
