@@ -21,6 +21,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.bumptech.glide.util.Preconditions;
 
 import java.io.File;
@@ -43,6 +44,8 @@ import me.bzcoder.easyglide.transformation.BorderTransformation;
 import me.bzcoder.easyglide.transformation.CircleWithBorderTransformation;
 import me.bzcoder.easyglide.transformation.GrayscaleTransformation;
 import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * EasyGlide工具类
@@ -221,6 +224,7 @@ public class EasyGlide {
                         .imageView(imageView)
                         .build());
     }
+
     /**
      * 提供了一下如下变形类，支持叠加使用
      * BlurTransformation
@@ -283,12 +287,10 @@ public class EasyGlide {
         GlideRequest<Drawable> glideRequest = null;
         if (config.getDrawableId() != 0) {
             glideRequest = requests.load(config.getDrawableId());
-        }
-        else{
+        } else {
             glideRequest = requests.load(config.getUrl());
         }
 
-      
 
         //缓存策略
         switch (config.getCacheStrategy()) {
@@ -312,7 +314,8 @@ public class EasyGlide {
                 break;
         }
         if (config.isCrossFade()) {
-            glideRequest.transition(DrawableTransitionOptions.withCrossFade());
+            DrawableCrossFadeFactory factory = new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
+            glideRequest.transition(withCrossFade(factory));
         }
 
         if (config.isImageRadius()) {
