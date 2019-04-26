@@ -5,7 +5,11 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 
 ## 有关于Glide的issue:
 - 单页上GIF数目过多时，GIF会疯狂掉帧。
-- 假如开启了CrossFade,加载完毕后PlaceHolder不会自动隐藏 [Glide #3195](https://github.com/bumptech/glide/issues/3195)
+- 加载完毕后PlaceHolder不会自动隐藏 [Glide #3195](https://github.com/bumptech/glide/issues/3195)
+
+## 改动
+- 1.0.6
+   - 修复加载透明图片PlaceHolder不自动隐藏的问题
 
 # 演示
 
