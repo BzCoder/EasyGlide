@@ -32,7 +32,7 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 ```
 
 	dependencies {
-	        implementation 'com.github.BzCoder:EasyGlide:1.0.5'
+	        implementation 'com.github.BzCoder:EasyGlide:1.0.6'
 	}
 ```
 
