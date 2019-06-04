@@ -8,6 +8,8 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 - 加载完毕后PlaceHolder不会自动隐藏 [Glide #3195](https://github.com/bumptech/glide/issues/3195)
 
 ## 改动
+- 1.0.7
+   - 增加RequestListener
 - 1.0.6
    - 修复加载透明图片PlaceHolder不自动隐藏的问题
 
@@ -46,6 +48,8 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 ```java
 
 EasyGlide.loadImage(this, url4, iv2);
+
+EasyGlide.loadImage(this, url4, iv2, new RequestListener());
 
 EasyGlide.loadBlurImage(this, url4, iv3);
 
