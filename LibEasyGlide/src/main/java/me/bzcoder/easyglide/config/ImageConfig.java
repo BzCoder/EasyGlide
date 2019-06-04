@@ -33,6 +33,7 @@ public class ImageConfig {
     public ImageView getImageView() {
         return imageView;
     }
+
     public int getDrawableId() {
         return drawableId;
     }

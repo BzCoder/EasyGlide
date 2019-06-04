@@ -1,7 +1,9 @@
 package me.bzcoder.easyglide.progress;
 
 /**
- * @author by sunfusheng on 2017/6/14.
+ * 
+ * @author : BaoZhou
+ * @date : 2019/6/4 9:25
  */
 public interface OnProgressListener {
     void onProgress(boolean isComplete, int percentage, long bytesRead, long totalBytes);

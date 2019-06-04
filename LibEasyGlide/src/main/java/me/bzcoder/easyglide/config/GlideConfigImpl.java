@@ -1,18 +1,3 @@
-/*
- * Copyright 2018 JessYan
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package me.bzcoder.easyglide.config;
 
 import android.graphics.drawable.Drawable;
@@ -20,15 +5,14 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.request.RequestListener;
 
+import me.bzcoder.easyglide.config.ImageConfig;
 import me.bzcoder.easyglide.progress.OnProgressListener;
 
 /**
- * ================================================
- * Created by JessYan on 30/03/2018 17:16
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
+ * @author : BaoZhou
+ * @date : 2019/6/4 8:32
  */
 public class GlideConfigImpl extends ImageConfig {
 
@@ -40,30 +24,23 @@ public class GlideConfigImpl extends ImageConfig {
      */
 
     private int cacheStrategy;
-    //请求 url 为空,则使用此图片作为占位符
     private int fallback;
-    private BitmapTransformation[] transformation;//glide用它来改变图形的形状
+    private BitmapTransformation[] transformation;
     private ImageView[] imageViews;
-    //清理内存缓存
     private boolean isClearMemory;
-    //清理本地缓存
     private boolean isClearDiskCache;
     private Drawable placeholderDrawable;
     private int resizeX;
     private boolean isCropCenter;
     private boolean isCropCircle;
     private boolean isFitCenter;
-    //图片格式
-    private DecodeFormat formate;
+    private DecodeFormat formatType;
     private int resizeY;
-    //图片每个圆角的大小
     private int imageRadius;
-    //高斯模糊值, 值越大模糊效果越大
     private int blurValue;
-    //是否使用淡入淡出过渡动画
     private boolean isCrossFade;
-    //监听加载进度
     private OnProgressListener onProgressListener;
+    private RequestListener requestListener;
 
     private GlideConfigImpl(Builder builder) {
         this.url = builder.url;
@@ -82,12 +59,13 @@ public class GlideConfigImpl extends ImageConfig {
         this.resizeY = builder.resizeY;
         this.isCropCenter = builder.isCropCenter;
         this.isCropCircle = builder.isCropCircle;
-        this.formate = builder.formate;
+        this.formatType = builder.formatType;
         this.isFitCenter = builder.isFitCenter;
         this.isCrossFade = builder.isCrossFade;
         this.imageRadius = builder.imageRadius;
         this.blurValue = builder.blurValue;
         this.onProgressListener = builder.onProgressListener;
+        this.requestListener = builder.requestListener;
     }
 
     public int getCacheStrategy() {
@@ -135,7 +113,7 @@ public class GlideConfigImpl extends ImageConfig {
     }
 
     public DecodeFormat decodeFormate() {
-        return formate;
+        return formatType;
     }
 
     public boolean isFitCenter() {
@@ -170,6 +148,16 @@ public class GlideConfigImpl extends ImageConfig {
         this.onProgressListener = onProgressListener;
     }
 
+
+    public RequestListener getRequestListener() {
+        return requestListener;
+    }
+
+    public void setRequestListener(RequestListener requestListener) {
+        this.requestListener = requestListener;
+    }
+
+
     public static Builder builder() {
         return new Builder();
     }
@@ -183,21 +171,22 @@ public class GlideConfigImpl extends ImageConfig {
         private int placeholder;
         private Drawable placeholderDrawable;
         private int errorPic;
-        private int fallback; //请求 url 为空,则使用此图片作为占位符
-        private int cacheStrategy;//0对应DiskCacheStrategy.all,1对应DiskCacheStrategy.NONE,2对应DiskCacheStrategy.SOURCE,3对应DiskCacheStrategy.RESULT
-        private int imageRadius;//图片每个圆角的大小
-        private int blurValue;//高斯模糊值, 值越大模糊效果越大
-        private BitmapTransformation[] transformation;//glide用它来改变图形的形状
+        private int fallback;
+        private int cacheStrategy;
+        private int imageRadius;
+        private int blurValue;
+        private BitmapTransformation[] transformation;
         private ImageView[] imageViews;
-        private boolean isClearMemory;//清理内存缓存
-        private boolean isClearDiskCache;//清理本地缓存
-        private boolean isCropCenter;//裁剪居中
+        private boolean isClearMemory;
+        private boolean isClearDiskCache;
+        private boolean isCropCenter;
         private boolean isCropCircle;
-        private boolean isCrossFade;//是否使用淡入淡出过渡动画
-        private DecodeFormat formate;
+        private boolean isCrossFade;
+        private DecodeFormat formatType;
         private boolean isFitCenter;
         private int resizeY;
         private OnProgressListener onProgressListener;
+        private RequestListener requestListener;
 
         private Builder() {
         }
@@ -293,8 +282,8 @@ public class GlideConfigImpl extends ImageConfig {
             return this;
         }
 
-        public Builder setDecodeFormate(DecodeFormat decodeFormate) {
-            formate = decodeFormate;
+        public Builder setDecodeFormate(DecodeFormat decodeFormat) {
+            formatType = decodeFormat;
             return this;
         }
 
@@ -305,6 +294,11 @@ public class GlideConfigImpl extends ImageConfig {
 
         public Builder progressListener(OnProgressListener onProgressListener) {
             this.onProgressListener = onProgressListener;
+            return this;
+        }
+
+        public Builder requestListener(RequestListener requestListener) {
+            this.requestListener = requestListener;
             return this;
         }
 

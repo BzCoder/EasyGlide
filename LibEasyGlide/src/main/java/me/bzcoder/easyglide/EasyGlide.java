@@ -21,6 +21,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.bumptech.glide.util.Preconditions;
 
@@ -60,18 +61,22 @@ public class EasyGlide {
 
 
     public static void loadImage(Context context, String url, ImageView imageView) {
-        loadImage(context, url, imageView, placeHolderImageView, null);
+        loadImage(context, url, imageView, placeHolderImageView, null, null);
+    }
+
+    public static void loadImage(Context context, String url, ImageView imageView, RequestListener requestListener) {
+        loadImage(context, url, imageView, placeHolderImageView, null, requestListener);
     }
 
     public static void loadImage(Context context, String url, ImageView imageView, OnProgressListener onProgressListener) {
-        loadImage(context, url, imageView, placeHolderImageView, onProgressListener);
+        loadImage(context, url, imageView, placeHolderImageView, onProgressListener, null);
     }
 
     public static void loadImage(Context context, String url, ImageView imageView, @DrawableRes int placeHolder) {
-        loadImage(context, url, imageView, placeHolder, null);
+        loadImage(context, url, imageView, placeHolder, null, null);
     }
 
-    public static void loadImage(Context context, String url, ImageView imageView, @DrawableRes int placeHolder, OnProgressListener onProgressListener) {
+    public static void loadImage(Context context, String url, ImageView imageView, @DrawableRes int placeHolder, OnProgressListener onProgressListener, RequestListener requestListener) {
         loadImage(context,
                 GlideConfigImpl
                         .builder()
@@ -82,6 +87,7 @@ public class EasyGlide {
                         .placeholder(placeHolder)
                         .imageView(imageView)
                         .progressListener(onProgressListener)
+                        .requestListener(requestListener)
                         .build());
     }
 
@@ -228,7 +234,7 @@ public class EasyGlide {
     /**
      * 提供了一下如下变形类，支持叠加使用
      * BlurTransformation
-     * GrayscaleTransformation
+     * GrayScaleTransformation
      * RoundedCornersTransformation
      * CircleCrop
      * CenterCrop
@@ -366,11 +372,16 @@ public class EasyGlide {
             glideRequest.fitCenter();
         }
 
+        if (config.getRequestListener() != null) {
+            glideRequest.addListener(config.getRequestListener());
+        }
+
         if (config.getOnProgressListener() != null) {
             ProgressManager.addListener(config.getUrl(), config.getOnProgressListener());
         }
 
         glideRequest.into(new GlideImageViewTarget(config.getImageView(), config.getUrl()));
+
     }
 
 

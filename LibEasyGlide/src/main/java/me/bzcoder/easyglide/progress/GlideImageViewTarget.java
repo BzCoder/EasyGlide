@@ -25,7 +25,7 @@ public class GlideImageViewTarget extends DrawableImageViewTarget {
     public void onLoadFailed(@Nullable Drawable errorDrawable) {
         OnProgressListener onProgressListener = ProgressManager.getProgressListener(url);
         if (onProgressListener != null) {
-            onProgressListener.onProgress(true, 100, 0, 0);
+            onProgressListener.onProgress(false, 100, 0, 0);
             ProgressManager.removeListener(url);
         }
         super.onLoadFailed(errorDrawable);

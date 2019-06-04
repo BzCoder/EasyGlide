@@ -3,13 +3,19 @@ package me.bzcoder.sample;
 import android.Manifest;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import me.bzcoder.easyglide.EasyGlide;
 import me.bzcoder.easyglide.progress.CircleProgressView;
@@ -94,15 +100,25 @@ public class MainActivity extends AppCompatActivity {
         EasyGlide.circlePlaceholderImageView = R.color.red;
 
         iv1.setOnClickListener(v ->
-
-
                 downloadImage()
-
         );
 
         EasyGlide.loadImage(this, url3, iv1);
 
-        EasyGlide.loadImage(this, url4, iv2);
+        EasyGlide.loadImage(this, url4, iv2, new RequestListener() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target target, boolean isFirstResource) {
+                        Toast.makeText(getApplication(), R.string.load_failed, Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Object resource, Object model, Target target, DataSource dataSource, boolean isFirstResource) {
+                        Toast.makeText(getApplication(), R.string.load_success, Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                }
+        );
 
         EasyGlide.loadBlurImage(this, url4, iv3);
 
@@ -118,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
         EasyGlide.loadCircleWithBorderImage(this, url2, iv9);
 
-        EasyGlide.loadImageWithTransformation(this, url2, iv10, new BlurTransformation(this, 20)
-                , new GrayscaleTransformation(), new CircleCrop());
+        EasyGlide.loadImageWithTransformation(this, url2, iv10, new BlurTransformation(this, 20), new GrayscaleTransformation(), new CircleCrop());
 
         EasyGlide.loadImage(this, R.drawable.test, iv11);
+
         EasyGlide.loadImage(this, "", iv12);
 
         EasyGlide.loadBorderImage(this, url2, iv13);

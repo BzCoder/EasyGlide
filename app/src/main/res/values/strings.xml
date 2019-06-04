@@ -2,4 +2,6 @@
     <string name="app_name">EasyGlide</string>
     <string name="hint">点击事件</string>
     <string name="need_write_external">需要获取相应的权限</string>
+    <string name="load_failed">load_failed</string>
+    <string name="load_success">load_success</string>
 </resources>
