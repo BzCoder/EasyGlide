@@ -95,6 +95,14 @@ public class EasyGlide {
         loadResizeXYImage(context, url, resizeX, resizeY, imageView, placeHolderImageView);
     }
 
+    /**
+     * 加载本地图片
+     * @param context
+     * @param drawableId
+     * @param resizeX
+     * @param resizeY
+     * @param imageView
+     */
     public static void loadResizeXYImage(Context context, @RawRes @DrawableRes @Nullable Integer drawableId, int resizeX, int resizeY, ImageView imageView) {
         loadImage(context,
                 GlideConfigImpl
