@@ -8,6 +8,8 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 - 加载完毕后PlaceHolder不会自动隐藏 [Glide #3195](https://github.com/bumptech/glide/issues/3195)
 
 ## 改动
+- 1.0.8
+   - 增加加载本地图片Resize方法
 - 1.0.7
    - 增加RequestListener
 - 1.0.6
@@ -34,7 +36,7 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 ```
 
 	dependencies {
-	        implementation 'com.github.BzCoder:EasyGlide:1.0.6'
+	        implementation 'com.github.BzCoder:EasyGlide:1.0.8'
 	}
 ```
 
