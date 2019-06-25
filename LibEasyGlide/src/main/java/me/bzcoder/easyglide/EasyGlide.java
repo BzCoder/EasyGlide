@@ -95,6 +95,17 @@ public class EasyGlide {
         loadResizeXYImage(context, url, resizeX, resizeY, imageView, placeHolderImageView);
     }
 
+    public static void loadResizeXYImage(Context context, @RawRes @DrawableRes @Nullable Integer drawableId, int resizeX, int resizeY, ImageView imageView) {
+        loadImage(context,
+                GlideConfigImpl
+                        .builder()
+                        .drawableId(drawableId)
+                        .isCropCenter(true)
+                        .resize(resizeX, resizeY)
+                        .imageView(imageView)
+                        .build());
+    }
+
     public static void loadResizeXYImage(Context context, String url, int resizeX, int resizeY, ImageView imageView, @DrawableRes int placeHolder) {
         loadImage(context,
                 GlideConfigImpl
@@ -102,7 +113,7 @@ public class EasyGlide {
                         .url(url)
                         .isCropCenter(true)
                         .isCrossFade(true)
-                        .resize(resizeX, resizeX)
+                        .resize(resizeX, resizeY)
                         .errorPic(placeHolder)
                         .placeholder(placeHolder)
                         .imageView(imageView)
