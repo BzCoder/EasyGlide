@@ -26,6 +26,12 @@ import me.bzcoder.easyglide.transformation.RoundedCornersTransformation;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+/**
+ * Sample工程
+ * @author : BaoZhou
+ * @date : 2019/7/4 10:18
+ */
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -79,12 +85,13 @@ public class MainActivity extends AppCompatActivity {
         iv12 = (ImageView) findViewById(R.id.iv_12);
         iv13 = (ImageView) findViewById(R.id.iv_13);
         EasyGlide.loadImage(this, url4, iv0, (isComplete, percentage, bytesRead, totalBytes) -> {
-//            if (isComplete) {
-//                circleProgressView.setVisibility(View.GONE);
-//
-//                circleProgressView.setVisibility(View.VISIBLE);
-//                circleProgressView.setProgress(percentage);
-//           }
+            // 跟踪进度
+           // if (isComplete) {
+           //     circleProgressView.setVisibility(View.GONE);
+           //
+           //     circleProgressView.setVisibility(View.VISIBLE);
+           //     circleProgressView.setProgress(percentage);
+           //}
         });
         circleProgressView.setVisibility(View.VISIBLE);
 
