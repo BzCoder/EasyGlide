@@ -1,14 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 apply from: 'jitpack.gradle'
 
 android {
     compileSdkVersion 28
-
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
 
     defaultConfig {
@@ -36,9 +33,13 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
     api 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
     implementation rootProject.ext.dependencies["rxjava2"]
     implementation rootProject.ext.dependencies["okhttp3"]
     implementation rootProject.ext.dependencies["rxandroid2"]
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
