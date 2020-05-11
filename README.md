@@ -8,6 +8,8 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 - 加载完毕后PlaceHolder不会自动隐藏 [Glide #3195](https://github.com/bumptech/glide/issues/3195)
 
 ## 改动
+- 2.0.0
+   - 改为Koltin扩展函数
 - 1.0.8
    - 增加加载本地图片Resize方法
 - 1.0.7
@@ -23,9 +25,7 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 
 # 使用方法
 ## 引入
-
 ```
-
 	allprojects {
 		repositories {
 			...
@@ -33,10 +33,11 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 		}
 	}
 ```
-```
 
+```
 	dependencies {
-	        implementation 'com.github.BzCoder:EasyGlide:1.0.8'
+	        implementation 'com.github.BzCoder:EasyGlide:2.0.0' //kotlin实现版本
+	        implementation 'com.github.BzCoder:EasyGlide:1.0.8' //Java实现版本
 	}
 ```
 
@@ -46,9 +47,8 @@ EasyGlide是一款基于Glide4.9.0的工具封装类，功能不复杂，主要�
 - SelectImageView
 
 ## EasyGlide 图片加载工具类
-工具类都在EasyGlide当中，其中封装了常用的图片加载方法。包含基本常用功能（圆形，黑白，圆角矩形，高斯模糊，变换大小，监听下载进度，清除缓存）。
+Java版本工具类都在EasyGlide当中，其中封装了常用的图片加载方法。包含基本常用功能（圆形，黑白，圆角矩形，高斯模糊，变换大小，监听下载进度，清除缓存）。
 ```java
-
 EasyGlide.loadImage(this, url4, iv2);
 
 EasyGlide.loadImage(this, url4, iv2, new RequestListener());
@@ -77,14 +77,52 @@ EasyGlide.clearImage(this,imageView)；
 
 ```
 
+- Kotlin使用扩展函数，调用更加简单方便直观。
+```kotlin
+        iv_0.loadImage(this, url4,onProgressListener = object :OnProgressListener{
+                    override fun onProgress(isComplete: Boolean, percentage: Int, bytesRead: Long, totalBytes: Long) {
+                        // 跟踪进度
+                        if (isComplete) {
+                            circleProgressView.visibility = View.GONE
+                        }
+                        circleProgressView.progress = percentage
+                    }
+                })
+
+        iv_1.setOnClickListener { downloadImage() }
+        iv_1.loadImage(this, url3)
+        iv_2.loadImage(this, url4, requestListener = object : RequestListener<Drawable?> {
+            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable?>?, isFirstResource: Boolean): Boolean {
+                Toast.makeText(application, R.string.load_failed, Toast.LENGTH_LONG).show()
+                return false
+            }
+
+            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable?>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                Toast.makeText(application, R.string.load_success, Toast.LENGTH_LONG).show()
+                return false
+            }
+        })
+
+        iv_3.loadBlurImage(this, url4)
+        iv_4.loadCircleImage(this, url4)
+        iv_5.loadRoundCornerImage(this, url4)
+        iv_6.loadGrayImage(this, url4)
+        iv_7.loadResizeXYImage(this, url2, 800, 200)
+        iv_8.loadImageWithTransformation(this, url2, GrayscaleTransformation(), RoundedCornersTransformation(50, 0))
+        iv_9.loadCircleWithBorderImage(this, url2)
+        iv_10.loadImageWithTransformation(this, url2, BlurTransformation(this, 20), GrayscaleTransformation(), CircleCrop())
+        iv_11.loadImage(this, R.drawable.test)
+        iv_12.loadImage(this, "")
+        iv_13.loadBorderImage(this, url2)
+ ```
+
 这些函数可能不能满足需求多种多样的你，所以你也可以通过实现```loadImage(Context context, GlideConfigImpl config)```模仿EasyGlide来对EasyGlide进行扩充。也欢迎直接替issue给我，我来帮您扩充。
 
-你可以尽早的设置全局placeholder，当然也可以单独设置placeholder。
+你可以尽早的设置全局默认placeholder，当然也可以单独设置placeholder。
 ```java
  EasyGlide.placeHolderImageView = R.color.red;
 
  EasyGlide.circlePlaceholderImageView = R.color.red;
- 
 ```
 
 ## 图片下载
