@@ -4,10 +4,11 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorRes
+import androidx.annotation.ColorRes
 import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.view.WindowManager
+import java.util.*
 
 object Utils {
     private var windowManager: WindowManager? = null
@@ -18,15 +19,15 @@ object Utils {
         return windowManager
     }
 
-    fun getDensity(context: Context): Float {
+    private fun getDensity(context: Context): Float {
         return context.resources.displayMetrics.density
     }
 
-    fun getFontDensity(context: Context): Float {
+    private fun getFontDensity(context: Context): Float {
         return context.resources.displayMetrics.scaledDensity
     }
 
-    fun getDisplayMetrics(context: Context): DisplayMetrics {
+    private fun getDisplayMetrics(context: Context): DisplayMetrics {
         val displayMetrics = DisplayMetrics()
         getWindowManager(context)!!.defaultDisplay.getMetrics(displayMetrics)
         return displayMetrics
@@ -58,13 +59,13 @@ object Utils {
         return getDisplayMetrics(context).heightPixels
     }
 
-    fun getPathFormat(path: String): String {
+    private fun getPathFormat(path: String): String {
         if (!TextUtils.isEmpty(path)) {
             val lastPeriodIndex = path.lastIndexOf('.')
             if (lastPeriodIndex > 0 && lastPeriodIndex + 1 < path.length) {
                 val format = path.substring(lastPeriodIndex + 1)
                 if (!TextUtils.isEmpty(format)) {
-                    return format.toLowerCase()
+                    return format.lowercase(Locale.getDefault())
                 }
             }
         }
@@ -75,7 +76,7 @@ object Utils {
         return "gif" == getPathFormat(url)
     }
 
-    fun getTextBitmap(context: Context, width: Int, height: Int, radius: Int, text: String?, textSize: Int, @ColorRes bgColor: Int): Bitmap {
+    private fun getTextBitmap(context: Context, width: Int, height: Int, radius: Int, text: String?, textSize: Int, @ColorRes bgColor: Int): Bitmap {
         var radius = radius
         radius = dp2px(context, radius.toFloat())
         val bitmap = Bitmap.createBitmap(dp2px(context, width.toFloat()), dp2px(context, height.toFloat()), Bitmap.Config.ARGB_8888)
@@ -89,7 +90,7 @@ object Utils {
         paint.textAlign = Paint.Align.CENTER
         val fontMetrics = paint.fontMetricsInt
         val baseline = (rect.bottom + rect.top - fontMetrics.bottom - fontMetrics.top) / 2
-        canvas.drawText(text, rect.centerX(), baseline, paint)
+        text?.apply { canvas.drawText(text, rect.centerX(), baseline, paint) }
         return bitmap
     }
 

@@ -42,7 +42,7 @@ class OkHttpStreamFetcher // Public API.
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, "OkHttp failed to obtain result", e)
         }
-        callback!!.onLoadFailed(e)
+        callback?.onLoadFailed(e)
     }
 
     override fun onResponse(call: Call, response: Response) {
@@ -50,22 +50,22 @@ class OkHttpStreamFetcher // Public API.
         if (response.isSuccessful) {
             val contentLength = Preconditions.checkNotNull(responseBody).contentLength()
             stream = ContentLengthInputStream.obtain(responseBody!!.byteStream(), contentLength)
-            callback!!.onDataReady(stream)
+            callback?.onDataReady(stream)
         } else {
-            callback!!.onLoadFailed(HttpException(response.message(), response.code()))
+            callback?.onLoadFailed(HttpException(response.message(), response.code()))
         }
     }
 
     override fun cleanup() {
         try {
             if (stream != null) {
-                stream!!.close()
+                stream?.close()
             }
         } catch (e: IOException) {
             // Ignored
         }
         if (responseBody != null) {
-            responseBody!!.close()
+            responseBody?.close()
         }
         callback = null
     }

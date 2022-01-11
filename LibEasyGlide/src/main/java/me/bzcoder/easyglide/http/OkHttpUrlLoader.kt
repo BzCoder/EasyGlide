@@ -43,7 +43,7 @@ class OkHttpUrlLoader // Public API.
         companion object {
             @Volatile
             private var internalClient: Call.Factory? = null
-                private get() {
+                get() {
                     if (field == null) {
                         synchronized(Factory::class.java) {
                             if (field == null) {

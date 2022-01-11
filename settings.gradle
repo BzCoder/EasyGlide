@@ -1,1 +1,14 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        google()
+        mavenCentral()
+        maven { url "https://maven.aliyun.com/nexus/content/repositories/releases" }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
 include ':app', ':LibEasyGlide'

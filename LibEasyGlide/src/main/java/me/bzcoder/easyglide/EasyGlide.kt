@@ -5,9 +5,9 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.media.MediaScannerConnection
 import android.os.Environment
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.annotation.RawRes
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.RawRes
 import android.webkit.MimeTypeMap
 import android.widget.ImageView
 import android.widget.Toast
