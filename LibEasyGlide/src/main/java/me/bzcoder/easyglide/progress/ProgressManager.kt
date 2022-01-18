@@ -42,7 +42,7 @@ object ProgressManager {
     }
 
     fun addListener(url: String, listener: OnProgressListener?) {
-        if (!TextUtils.isEmpty(url) && listener != null) {
+        if (url.isNotBlank() && listener != null) {
             listenersMap[url] = listener
             listener.onProgress(false, 1, 0, 0)
         }

@@ -161,7 +161,7 @@ class GlideConfigImpl private constructor(builder: Builder) : ImageConfig() {
             return this
         }
 
-        fun setDecodeFormate(decodeFormat: DecodeFormat?): Builder {
+        fun setDecodeFormat(decodeFormat: DecodeFormat?): Builder {
             formatType = decodeFormat
             return this
         }

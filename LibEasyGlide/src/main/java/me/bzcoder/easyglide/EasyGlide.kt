@@ -48,8 +48,9 @@ object EasyGlide {
      *
      * @param context
      * @param drawableId
-     * @param imageView
      */
+
+    @JvmStatic
     fun ImageView.loadImage(context: Context, @RawRes @DrawableRes drawableId: Int) {
         loadImage(context, GlideConfigImpl
                 .builder()
@@ -59,6 +60,7 @@ object EasyGlide {
                 .build())
     }
 
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadImage(context: Context, url: String?, @DrawableRes placeHolder: Int = placeHolderImageView, onProgressListener: OnProgressListener? = null, requestListener: RequestListener<Drawable?>? = null) {
         loadImage(context,
@@ -78,11 +80,10 @@ object EasyGlide {
     /**
      * 加载本地图片
      * @param context
-     * @param drawableId
      * @param resizeX
      * @param resizeY
-     * @param imageView
      */
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadResizeXYImage(context: Context, url: String?, resizeX: Int, resizeY: Int, @DrawableRes placeHolder: Int = placeHolderImageView) {
         loadImage(context,
@@ -98,6 +99,7 @@ object EasyGlide {
                         .build())
     }
 
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadCircleImage(context: Context, url: String?, @DrawableRes placeHolder: Int = circlePlaceholderImageView) {
         loadImage(context,
@@ -112,6 +114,7 @@ object EasyGlide {
                         .build())
     }
 
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadGrayImage(context: Context, url: String?, @DrawableRes placeHolder: Int = placeHolderImageView) {
         loadImage(context,
@@ -126,6 +129,7 @@ object EasyGlide {
                         .build())
     }
 
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadBlurImage(context: Context, url: String?, radius: Int = 10, @DrawableRes placeHolder: Int = placeHolderImageView) {
         loadImage(context,
@@ -140,6 +144,7 @@ object EasyGlide {
                         .build())
     }
 
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadRoundCornerImage(context: Context, url: String?, radius: Int = 40, margin: Int = 0, @DrawableRes placeHolder: Int = placeHolderImageView) {
         loadImage(context,
@@ -154,6 +159,7 @@ object EasyGlide {
                         .build())
     }
 
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadCircleWithBorderImage(context: Context, url: String?, borderWidth: Int = 2, @ColorInt borderColor: Int = 0xACACAC, @DrawableRes placeHolder: Int = placeHolderImageView) {
         loadImage(context,
@@ -168,6 +174,7 @@ object EasyGlide {
                         .build())
     }
 
+    @JvmStatic
     @JvmOverloads
     fun ImageView.loadBorderImage(context: Context, url: String?, borderWidth: Int = 2, @ColorInt borderColor: Int = 0xACACAC, @DrawableRes placeHolder: Int = placeHolderImageView) {
         loadImage(context,
@@ -190,6 +197,7 @@ object EasyGlide {
      * CircleCrop
      * CenterCrop
      */
+    @JvmStatic
     fun ImageView.loadImageWithTransformation(context: Context, url: String?, vararg bitmapTransformations: BitmapTransformation, @DrawableRes placeHolder: Int = placeHolderImageView) {
         loadImage(context,
                 GlideConfigImpl
@@ -210,10 +218,12 @@ object EasyGlide {
      * @param context
      * @param url
      */
+    @JvmStatic
     fun preloadImage(context: Context, url: String?) {
         Glide.with(context).load(url).preload()
     }
 
+    @SuppressLint("CheckResult")
     fun loadImage(context: Context, config: GlideConfigImpl) {
         Preconditions.checkNotNull(context, "Context is required")
         Preconditions.checkNotNull(config, "ImageConfigImpl is required")
@@ -307,6 +317,7 @@ object EasyGlide {
      * 清除内存缓存
      */
     @SuppressLint("CheckResult")
+    @JvmStatic
     fun clearMemory(context: Context) {
         Observable.just(0)
                 .observeOn(Schedulers.io())
@@ -316,6 +327,7 @@ object EasyGlide {
     /**
      * 取消图片加载
      */
+    @JvmStatic
     fun clearImage(context: Context, imageView: ImageView?) {
         EasyGlideApp.get(context).requestManagerRetriever[context].clear(imageView!!)
     }
@@ -326,6 +338,7 @@ object EasyGlide {
      * @param imgUrl
      */
     @SuppressLint("CheckResult")
+    @JvmStatic
     fun downloadImageToGallery(context: Context, imgUrl: String?) {
         val extension = MimeTypeMap.getFileExtensionFromUrl(imgUrl)
         Observable.create(ObservableOnSubscribe { emitter: ObservableEmitter<File?> ->
