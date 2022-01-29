@@ -140,8 +140,8 @@ class GlideConfigImpl private constructor(builder: Builder) : ImageConfig() {
             return this
         }
 
-        fun placeholderDrawble(placeholderDrawble: Drawable?): Builder {
-            placeholderDrawable = placeholderDrawble
+        fun placeholderDrawable(placeholderDrawable: Drawable?): Builder {
+            this.placeholderDrawable = placeholderDrawable
             return this
         }
 

@@ -46,13 +46,13 @@ class OkHttpStreamFetcher // Public API.
     }
 
     override fun onResponse(call: Call, response: Response) {
-        responseBody = response.body()
+        responseBody = response.body
         if (response.isSuccessful) {
             val contentLength = Preconditions.checkNotNull(responseBody).contentLength()
             stream = ContentLengthInputStream.obtain(responseBody!!.byteStream(), contentLength)
             callback?.onDataReady(stream)
         } else {
-            callback?.onLoadFailed(HttpException(response.message(), response.code()))
+            callback?.onLoadFailed(HttpException(response.message, response.code))
         }
     }
 

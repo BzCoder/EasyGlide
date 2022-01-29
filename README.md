@@ -8,11 +8,12 @@ EasyGlide是一款基于Glide4.12.0的工具封装类，功能不复杂，主要
 - 加载完毕后PlaceHolder不会自动隐藏 [Glide #3195](https://github.com/bumptech/glide/issues/3195)
 
 ## 改动
-- Not Publish
+- 2.0.1
    - 升级至Androidx
-   - 升级Gradle至7.0
+   - 升级Gradle至7.0+
    - 升级Glide至4.12.0
-   - 优化代码逻辑
+   - 升级OKHttp至4.7.0
+   - 优化代码风格&逻辑
 - 2.0.0
    - 改为Kotlin扩展函数
 - 1.0.8

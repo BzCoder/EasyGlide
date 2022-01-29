@@ -22,12 +22,11 @@ android {
     }
 
 
-    lintOptions {
-        abortOnError false
-    }
-
     viewBinding {
         enabled = true
+    }
+    lint {
+        abortOnError false
     }
 
 }

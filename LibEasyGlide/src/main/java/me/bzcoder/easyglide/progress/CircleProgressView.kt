@@ -16,6 +16,7 @@ import android.widget.ProgressBar
 import me.bzcoder.easyglide.R
 import me.bzcoder.easyglide.util.Utils.dp2px
 import me.bzcoder.easyglide.util.Utils.sp2px
+import kotlin.math.acos
 
 class CircleProgressView @JvmOverloads constructor(
     context: Context?,
@@ -251,8 +252,7 @@ class CircleProgressView @JvmOverloads constructor(
         canvas.save()
         canvas.translate(mRealWidth / 2.toFloat(), mRealHeight / 2.toFloat())
         val progressY = progress * 1.0f / max * (mRadius * 2)
-        val angle =
-            (Math.acos((mRadius - progressY) / mRadius.toDouble()) * 180 / Math.PI).toFloat()
+        val angle = (acos((mRadius - progressY) / mRadius.toDouble()) * 180 / Math.PI).toFloat()
         val startAngle = 90 + angle
         val sweepAngle = 360 - angle * 2
         // 绘制未到达区域

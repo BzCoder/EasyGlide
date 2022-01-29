@@ -328,8 +328,8 @@ object EasyGlide {
      * 取消图片加载
      */
     @JvmStatic
-    fun clearImage(context: Context, imageView: ImageView?) {
-        EasyGlideApp.get(context).requestManagerRetriever[context].clear(imageView!!)
+    fun clearImage(context: Context, imageView: ImageView) {
+        EasyGlideApp.get(context).requestManagerRetriever[context].clear(imageView)
     }
 
     /**

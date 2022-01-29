@@ -32,9 +32,7 @@ class BorderTransformation(borderWidth: Int, @ColorInt borderColor: Int) : Bitma
 
         //描绘边框
         paint.isAntiAlias = true
-        if (mBorderPaint != null) {
-            canvas.drawRect(0 + mBorderWidth / 2, 0 + mBorderWidth / 2, width - mBorderWidth / 2, height - mBorderWidth / 2, mBorderPaint)
-        }
+        canvas.drawRect(0 + mBorderWidth / 2, 0 + mBorderWidth / 2, width - mBorderWidth / 2, height - mBorderWidth / 2, mBorderPaint)
         return bitmap
     }
 

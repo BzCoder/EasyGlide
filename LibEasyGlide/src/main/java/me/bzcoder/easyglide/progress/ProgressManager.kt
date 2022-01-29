@@ -19,9 +19,9 @@ object ProgressManager {
         val request = chain.request()
         val response = chain.proceed(request)
         response.newBuilder().run {
-            val body = response.body()
+            val body = response.body
             if (body != null) {
-                this.body(ProgressResponseBody(request.url().toString(), LISTENER, body))
+                this.body(ProgressResponseBody(request.url.toString(), LISTENER, body))
             }
             this.build()
         }

@@ -19,8 +19,7 @@ class OkHttpUrlLoader // Public API.
         return true
     }
 
-    override fun buildLoadData(model: GlideUrl, width: Int, height: Int,
-                               options: Options): LoadData<InputStream>? {
+    override fun buildLoadData(model: GlideUrl, width: Int, height: Int, options: Options): LoadData<InputStream> {
         return LoadData(model, OkHttpStreamFetcher(client, model))
     }
 
