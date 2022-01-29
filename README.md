@@ -42,7 +42,7 @@ EasyGlide是一款基于Glide4.12.0的工具封装类，功能不复杂，主要
 
 ```
 	dependencies {
-	        implementation 'com.github.BzCoder:EasyGlide:2.0.0' //kotlin实现版本
+	        implementation 'com.github.BzCoder:EasyGlide:2.0.1' //kotlin实现版本
 	        implementation 'com.github.BzCoder:EasyGlide:1.0.8' //Java实现版本
 	}
 ```
