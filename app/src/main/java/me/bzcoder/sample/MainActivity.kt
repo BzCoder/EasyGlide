@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private var url2 = "http://img.crcz.com/allimg/202003/25/1585100748975745.jpg"
-    private var url3 = "http://img.mp.itc.cn/upload/20170311/48180d37e4474628900d058f3cc5ee7d_th.gif"
-    private var url4 = "http://img.mp.itc.cn/upload/20170311/33f2b7f7ffb04ecb81e42405e20b3fdc_th.gif"
+    private var url3 = "https://img.mp.itc.cn/upload/20170311/48180d37e4474628900d058f3cc5ee7d_th.gif"
+    private var url4 = "https://img.mp.itc.cn/upload/20170311/33f2b7f7ffb04ecb81e42405e20b3fdc_th.gif"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -116,8 +116,7 @@ class MainActivity : AppCompatActivity() {
         binding.iv8.loadImageWithTransformation(
             this,
             url2,
-            GrayscaleTransformation(),
-            RoundedCornersTransformation(50, 0)
+            RoundedCornersTransformation(50, 0, cornerType = RoundedCornersTransformation.CornerType.DIAGONAL_FROM_TOP_LEFT)
         )
         binding.iv9.loadCircleWithBorderImage(this, url2)
         binding.iv10.loadImageWithTransformation(

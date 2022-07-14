@@ -13,7 +13,6 @@ import androidx.annotation.RequiresApi
  * @author sunfusheng on 2018/6/25.
  */
 object BlurUtils {
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     fun rsBlur(context: Context?, toTransform: Bitmap, radius: Int): Bitmap {
         val renderScript = RenderScript.create(context)
         val input = Allocation.createFromBitmap(renderScript, toTransform)
